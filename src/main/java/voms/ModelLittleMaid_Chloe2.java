@@ -725,5 +725,11 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		hemSkirtR2.rotateAngleX += jsR2 * 0.75F + hemSkirtR1.rotateAngleX * 0.15F;
 		hemSkirtL2.rotateAngleX += jsL2 * 0.75F + hemSkirtL1.rotateAngleX * 0.15F;
 	}
+	
+	@Override
+	public void render(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float ageInTicks,
+			float netHeadYaw, float headPitch, float scale, boolean isRender) {
+		mainFrame.render(scale, isRender);
+	}
 
 }

@@ -481,5 +481,11 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		Arms[2].setRotateAngle(-0.78539816339744830961566084581988F - bipedRightArm.getRotateAngleX(), 0F, 0F);
 		Arms[3].setRotateAngle(-0.78539816339744830961566084581988F - bipedLeftArm.getRotateAngleX(), 0F, 0F);
 	}
+	
+	@Override
+	public void render(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float ageInTicks,
+			float netHeadYaw, float headPitch, float scale, boolean isRender) {
+		mainFrame.render(scale, isRender);
+	}
 
 }
