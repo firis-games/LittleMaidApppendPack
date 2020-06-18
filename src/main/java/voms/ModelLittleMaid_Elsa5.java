@@ -1,20 +1,27 @@
-package net.minecraft.src;
+package voms;
 
 import java.util.Random;
+
+import firis.lmmm.api.caps.IModelCaps;
+import firis.lmmm.api.caps.ModelCapsHelper;
+import firis.lmmm.api.model.ModelLittleMaidBase;
+import firis.lmmm.api.renderer.ModelRenderer;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ベーシックモデル
  * 身長1.75ブロック級
  */
-public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
+public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 
 	//added fields
-	public MMM_ModelRenderer eyeR;
-	public MMM_ModelRenderer eyeL;
-	public MMM_ModelRenderer Ponytail;
-	public MMM_ModelRenderer BunchR;
-	public MMM_ModelRenderer BunchL;
-	public MMM_ModelRenderer hemSkirt;
+	public ModelRenderer eyeR;
+	public ModelRenderer eyeL;
+	public ModelRenderer Ponytail;
+	public ModelRenderer BunchR;
+	public ModelRenderer BunchL;
+	public ModelRenderer hemSkirt;
 	protected byte offsetY;
 	protected byte headPosY;
 	protected byte bodyPosY;
@@ -24,21 +31,21 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 	/**
 	 * コンストラクタは全て継承させること
 	 */
-	public MMM_ModelLittleMaid_Elsa5()
+	public ModelLittleMaid_Elsa5()
 	{
 		this(0F);
 	}
 	/**
 	 * コンストラクタは全て継承させること
 	 */
-	public MMM_ModelLittleMaid_Elsa5(float psize)
+	public ModelLittleMaid_Elsa5(float psize)
 	{
 		this(psize, 0F, 64, 64);
 	}
 	/**
 	 * コンストラクタは全て継承させること
 	 */
-	public MMM_ModelLittleMaid_Elsa5(float psize, float pyoffset, int pTextureWidth, int pTextureHeight)
+	public ModelLittleMaid_Elsa5(float psize, float pyoffset, int pTextureWidth, int pTextureHeight)
 	{
 		super(psize, pyoffset, pTextureWidth, pTextureHeight);
 	}
@@ -53,23 +60,23 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		legPosY = 3; //Lcal hip joint height = 0 + lowerBodyLength
 
 		/* HEAD */
-		eyeR = new MMM_ModelRenderer(this, 0, 0);
+		eyeR = new ModelRenderer(this, 0, 0);
 		eyeR.addPlate(-4F, -8F, -4.01F, 4, 8, 0, psize);
 
-		eyeL = new MMM_ModelRenderer(this, 4, 0);
+		eyeL = new ModelRenderer(this, 4, 0);
 		eyeL.addPlate(0F, -8F, -4.01F, 4, 8, 0, psize);
 
-		Ponytail = new MMM_ModelRenderer(this, 52, 26);
+		Ponytail = new ModelRenderer(this, 52, 26);
 		Ponytail.addBox(-1.5F, -1.5F, -1F, 3, 9, 3, psize);
 
-		BunchR = new MMM_ModelRenderer(this, 40, 26);
+		BunchR = new ModelRenderer(this, 40, 26);
 		BunchR.addBox(-1F, -1.3F, -0.8F, 1, 9, 2, psize);
 
-		BunchL = new MMM_ModelRenderer(this, 46, 26);
+		BunchL = new ModelRenderer(this, 46, 26);
 		 BunchL.mirror = true;
 		BunchL.addBox(0F, -1.3F, -0.8F, 1, 9, 2, psize);
 
-		bipedHead = new MMM_ModelRenderer(this, 0, 0);
+		bipedHead = new ModelRenderer(this, 0, 0);
 		bipedHead.setTextureOffset(0, 0).addBox(-4F, -8F, -4F, 8, 8, 8, psize);			// Head
 		bipedHead.setTextureOffset(32, 0).addBox(-4F, -8F, -4F, 8, 12, 8, psize+0.3F);		// Hire
 		bipedHead.setTextureOffset(52, 20).addBox(-2F, -7.2F, 4F, 4, 4, 2, psize);		// ChignonB
@@ -84,56 +91,56 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		 bipedHead.addChild(BunchL);
 
 		/* ARMS */
-		Arms = new MMM_ModelRenderer[18];
+		Arms = new ModelRenderer[18];
 		// 手持ち
-		Arms[0] = new MMM_ModelRenderer(this, 0, 0);
-		Arms[1] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[0] = new ModelRenderer(this, 0, 0);
+		Arms[1] = new ModelRenderer(this, 0, 0);
 		Arms[1].isInvertX = true;
 		// バイプロダクトエフェクター
-		Arms[2] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[2] = new ModelRenderer(this, 0, 0);
 		Arms[2].setRotationPoint(-3.5F, 11F, 6F);
 		Arms[2].setRotateAngle(0.78539816339744830961566084581988F, 0F, 0F);
-		Arms[3] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[3] = new ModelRenderer(this, 0, 0);
 		Arms[3].setRotationPoint(3.5F, 11F, 6F);
 		Arms[3].setRotateAngle(0.78539816339744830961566084581988F, 0F, 0F);
 		Arms[3].isInvertX = true;
 		// テールソード
-		Arms[4] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[4] = new ModelRenderer(this, 0, 0);
 		Arms[4].setRotationPoint(-2F, 0F, 0F);
 		Arms[4].setRotateAngle(3.1415926535897932384626433832795F, 0F, 0F);
-		Arms[5] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[5] = new ModelRenderer(this, 0, 0);
 		Arms[5].setRotationPoint(2F, 0F, 0F);
 		Arms[5].setRotateAngle(3.1415926535897932384626433832795F, 0F, 0F);
 
-		bipedRightArm = new MMM_ModelRenderer(this, 20, 24);
+		bipedRightArm = new ModelRenderer(this, 20, 24);
 		bipedRightArm.addBox(-1.5F, -0.5F, -0.5F, 2, 10, 2, psize);
 		 bipedRightArm.addChild(Arms[0]);
 		 bipedRightArm.addChild(Arms[2]);
 
-		bipedLeftArm = new MMM_ModelRenderer(this, 28, 24);
+		bipedLeftArm = new ModelRenderer(this, 28, 24);
 		 bipedLeftArm.mirror = true;
 		bipedLeftArm.addBox(-0.5F, -0.5F, -0.5F, 2, 10, 2, psize);
 		 bipedLeftArm.addChild(Arms[1]);
 		 bipedLeftArm.addChild(Arms[3]);
 
 		/* LEGS */
-		bipedRightLeg = new MMM_ModelRenderer(this, 0, 29);
+		bipedRightLeg = new ModelRenderer(this, 0, 29);
 		bipedRightLeg.addBox(-1.8F, 0F, -2F, 3, 11, 4, psize);
 
-		bipedLeftLeg = new MMM_ModelRenderer(this, 0, 29);
+		bipedLeftLeg = new ModelRenderer(this, 0, 29);
 		 bipedLeftLeg.mirror = true;
 		bipedLeftLeg.addBox(-1.2F, 0F, -2F, 3, 11, 4, psize);
 
 		/* SKIRT */
-		hemSkirt = new MMM_ModelRenderer(this, 34, 50);
+		hemSkirt = new ModelRenderer(this, 34, 50);
 		hemSkirt.addBox(-4F, -1F, -3.5F, 8, 7, 7, psize+0.3F);
 
-		Skirt = new MMM_ModelRenderer(this, 36, 40);
+		Skirt = new ModelRenderer(this, 36, 40);
 		Skirt.addBox(-4F, -2F, -3F, 8, 4, 6, psize);
 		 Skirt.addChild(hemSkirt);
 
 		/* BODY */
-		bipedBody = new MMM_ModelRenderer(this, 0, 0);
+		bipedBody = new ModelRenderer(this, 0, 0);
 		bipedBody.setTextureOffset(0, 16).addBox(-3F, -6F, -2F, 6, 9, 4, psize); //body
 		bipedBody.setTextureOffset(20, 20).addBox(-3F, -4.5F, -2.21F, 6, 2, 2, psize+0.2F); //breast
 		 bipedBody.addChild(bipedRightArm);
@@ -142,7 +149,7 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		 bipedBody.addChild(Arms[5]);
 
 		/* LOCAL SPACE */
-		mainFrame = new MMM_ModelRenderer(this, 0, 0);
+		mainFrame = new ModelRenderer(this, 0, 0);
 		mainFrame.setRotationPoint(0F, offsetY, 0F);
 		 mainFrame.addChild(bipedHead);
 		 mainFrame.addChild(bipedBody);
@@ -167,7 +174,7 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 	 * 姿勢制御・初期化
 	 */
 	@Override
-	public void setLivingAnimations(MMM_IModelCaps pEntityCaps, float f, float f1, float pRenderPartialTicks)
+	public void setLivingAnimations(IModelCaps pEntityCaps, float f, float f1, float pRenderPartialTicks)
 	{
 		//INIT POSITION
 		bipedHead.setRotationPoint(0F, headPosY, 0F);
@@ -243,8 +250,8 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		mainFrame.rotateAngleZ = 0F;
 
 		//おねだり
-		bipedHead.rotateAngleZ = MMM_ModelCapsHelper.getCapsValueFloat(pEntityCaps, caps_interestedAngle, (Float)pRenderPartialTicks);
-		if(MMM_ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isLookSuger))
+		bipedHead.rotateAngleZ = ModelCapsHelper.getCapsValueFloat(pEntityCaps, caps_interestedAngle, (Float)pRenderPartialTicks);
+		if(ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isLookSuger))
 		{ //うるうる
 			float fe1 = rand.nextFloat() - 0.5F;
 			float fe2 = rand.nextFloat() - 0.5F;
@@ -257,7 +264,7 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 
 		// まばたき from SR2
 		float blinkFreq = 0.16F; //まばたき頻度, min: 0
-		blinkFreq += 1F - (float)MMM_ModelCapsHelper.getCapsValueInt(pEntityCaps, caps_health) / 20F; //体力少ないとまばたき多くなる
+		blinkFreq += 1F - (float)ModelCapsHelper.getCapsValueInt(pEntityCaps, caps_health) / 20F; //体力少ないとまばたき多くなる
 		float f3 = (float)(entityTicksExisted + pRenderPartialTicks + entityIdFactor) * 0.01F; //位相
 		float f4 = (float)(Math.sin(f3 * 3F) + Math.sin(f3 * 17F) + Math.sin(f3 * 37F) + blinkFreq-2.23309F); //パルス列
 		if (f4 < 0) {//開
@@ -269,9 +276,9 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		}
 
 		//ジャンプふわり
-		EntityLivingBase ent = (EntityLivingBase)MMM_ModelCapsHelper.getCapsValue(pEntityCaps, caps_Entity);
-		float velY = (float)MMM_ModelCapsHelper.getCapsValueDouble(pEntityCaps, caps_motionY) + 0.1F;
-		velY = ent.getEntityName().equals("Dinnerbone") ? -velY : velY;
+		EntityLivingBase ent = (EntityLivingBase)ModelCapsHelper.getCapsValue(pEntityCaps, caps_Entity);
+		float velY = (float)ModelCapsHelper.getCapsValueDouble(pEntityCaps, caps_motionY) + 0.1F;
+		velY = ent.getName().equals("Dinnerbone") ? -velY : velY;
 		//スカート
 		float fwBuf0 = velY * 1.1F;
 		fwBuf0 = fwBuf0>0.5F ? 0.5F : fwBuf0;
@@ -283,7 +290,7 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		hemSkirt.rotationPointY  += fwBuf1;
 		hemSkirt.rotationPointY  += fwBuf1;
 		//髪
-		if(!MMM_ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isWet))
+		if(!ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isWet))
 		{
 			float fwBuf5 = velY * 2.1F;
 			fwBuf5 = fwBuf5>0.1F ? 0.1F : fwBuf5;
@@ -298,7 +305,7 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 	 * 姿勢制御・更新差分
 	 */
 	@Override
-	public void setRotationAngles(float f, float f1, float ticksExisted, float pheadYaw, float pheadPitch, float f5, MMM_IModelCaps pEntityCaps)
+	public void setRotationAngles(float f, float f1, float ticksExisted, float pheadYaw, float pheadPitch, float f5, IModelCaps pEntityCaps)
 	{
 		//顔向き
 		bipedHead.rotateAngleY += pheadYaw / 57.29578F;
@@ -355,8 +362,8 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 		{
 			// 腕振り
 			float f6, f7, f8;
-			f6 = MathHelper.sin(MathHelper.sqrt_float(onGroundR) * (float)Math.PI * 2.0F);
-			f7 = MathHelper.sin(MathHelper.sqrt_float(onGroundL) * (float)Math.PI * 2.0F);
+			f6 = MathHelper.sin(mh_sqrt_float(onGroundR) * (float)Math.PI * 2.0F);
+			f7 = MathHelper.sin(mh_sqrt_float(onGroundL) * (float)Math.PI * 2.0F);
 			bipedBody.rotateAngleY = (f6 - f7) * 0.2F;
 			Skirt.rotateAngleY = bipedBody.rotateAngleY;
 			bipedRightArm.rotateAngleY += bipedBody.rotateAngleY;
@@ -440,6 +447,7 @@ public class MMM_ModelLittleMaid_Elsa5 extends MMM_ModelLittleMaidBase {
 			if (aimedBow)
 			{
 				// 弓構え
+				float onGround = 0.0F; //lmmm未使用変数
 				float f6 = MathHelper.sin(onGround * 3.141593F);
 				float f7 = MathHelper.sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
 				bipedRightArm.rotateAngleZ = 0.0F;
