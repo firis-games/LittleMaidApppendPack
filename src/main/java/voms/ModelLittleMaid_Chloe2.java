@@ -6,10 +6,6 @@ import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.renderer.ModelRenderer;
-import net.blacklab.lmr.entity.littlemaid.EntityLittleMaid;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
 
 /**
 * 多関節モデル
@@ -383,9 +379,10 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		bipedLeftLeg.rotateAngleX += 0.36F * (1 - legSlideDelay);
 		
 		//ジャンプふわり
-		EntityLivingBase ent = (EntityLivingBase)ModelCapsHelper.getCapsValue(pEntityCaps, caps_Entity);
+		String ent = ModelCapsHelper.getCapsValueString(pEntityCaps, caps_entityName);
 		float velY = (float)ModelCapsHelper.getCapsValueDouble(pEntityCaps, caps_motionY) + 0.1F;
-		velY = ent.getName().equals("Dinnerbone") ? -velY : velY;
+		velY = ent.equals("Dinnerbone") ? -velY : velY;
+		
 		//スカート
 		float fwBuf0 = velY * 1.1F;
 		fwBuf0 = fwBuf0>0.5F ? 0.5F : fwBuf0;
@@ -431,8 +428,8 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		
 		if (isRiding) {
 			// 背負われている
-			EntityLivingBase ent = (EntityLivingBase)ModelCapsHelper.getCapsValue(pEntityCaps, caps_Entity);
-			if(ent.getRidingEntity() instanceof EntityPlayer || ent.getRidingEntity() instanceof EntityLittleMaid) {
+			String ridingType = ModelCapsHelper.getCapsValueString(pEntityCaps, caps_getRidingType);
+			if(ridingType.equals("player") || ridingType.equals("littlemaid")) {
 				bipedRightArm.rotateAngleX -= 1.3F;
 				bipedLeftArm.rotateAngleX -= 1.3F;
 				upperRightLeg.rotateAngleX -= 1.1F;
@@ -443,7 +440,7 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 				upperLeftLeg.rotateAngleY -= 0.3F;
 				mainFrame.rotationPointY += 8F;
 				mainFrame.rotationPointZ += 1F;
-			} else if(ent.getRidingEntity() instanceof EntityAnimal) {
+			} else if(ridingType.equals("animal")) {
 				bipedRightArm.rotateAngleX -= 1.3F;
 				bipedLeftArm.rotateAngleX -= 1.3F;
 				upperRightLeg.rotateAngleX -= 1.0F;

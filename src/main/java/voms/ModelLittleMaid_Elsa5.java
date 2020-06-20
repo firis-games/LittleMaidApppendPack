@@ -6,7 +6,6 @@ import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.renderer.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
 
 /**
  * ベーシックモデル
@@ -272,9 +271,9 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		}
 		
 		//ジャンプふわり
-		EntityLivingBase ent = (EntityLivingBase)ModelCapsHelper.getCapsValue(pEntityCaps, caps_Entity);
+		String ent = ModelCapsHelper.getCapsValueString(pEntityCaps, caps_entityName);
 		float velY = (float)ModelCapsHelper.getCapsValueDouble(pEntityCaps, caps_motionY) + 0.1F;
-		velY = ent.getName().equals("Dinnerbone") ? -velY : velY;
+		velY = ent.equals("Dinnerbone") ? -velY : velY;
 		
 		//スカート
 		float fwBuf0 = velY * 1.1F;
