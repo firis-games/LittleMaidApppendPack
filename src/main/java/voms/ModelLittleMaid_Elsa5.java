@@ -7,7 +7,6 @@ import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.renderer.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.math.MathHelper;
 
 /**
  * ベーシックモデル
@@ -317,12 +316,12 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		}
 		
 		//歩行
-		bipedRightArm.rotateAngleX -= MathHelper.cos(f * 0.5656F) * 0.8F * f1;
-		bipedLeftArm.rotateAngleX += MathHelper.cos(f * 0.5656F) * 0.8F * f1;
-		bipedRightLeg.rotateAngleX += MathHelper.cos(f * 0.5656F) * 1.2F * f1;
-		bipedLeftLeg.rotateAngleX -= MathHelper.cos(f * 0.5656F) * 1.2F * f1;
-		Skirt.rotateAngleY += MathHelper.cos(f * 0.5656F) * 0.15F * f1;
-		hemSkirt.rotateAngleY += MathHelper.cos(f * 0.5656F) * 0.25F * f1;
+		bipedRightArm.rotateAngleX -= mh_cos(f * 0.5656F) * 0.8F * f1;
+		bipedLeftArm.rotateAngleX += mh_cos(f * 0.5656F) * 0.8F * f1;
+		bipedRightLeg.rotateAngleX += mh_cos(f * 0.5656F) * 1.2F * f1;
+		bipedLeftLeg.rotateAngleX -= mh_cos(f * 0.5656F) * 1.2F * f1;
+		Skirt.rotateAngleY += mh_cos(f * 0.5656F) * 0.15F * f1;
+		hemSkirt.rotateAngleY += mh_cos(f * 0.5656F) * 0.25F * f1;
 		
 		if (isRiding) {
 			// 乗り物に乗っている
@@ -354,8 +353,8 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		if ((onGroundR > -9990F || onGroundL > -9990F) && !aimedBow) {
 			// 腕振り
 			float f6, f7, f8;
-			f6 = MathHelper.sin(mh_sqrt_float(onGroundR) * (float)Math.PI * 2.0F);
-			f7 = MathHelper.sin(mh_sqrt_float(onGroundL) * (float)Math.PI * 2.0F);
+			f6 = mh_sin(mh_sqrt_float(onGroundR) * (float)Math.PI * 2.0F);
+			f7 = mh_sin(mh_sqrt_float(onGroundL) * (float)Math.PI * 2.0F);
 			bipedBody.rotateAngleY = (f6 - f7) * 0.2F;
 			Skirt.rotateAngleY = bipedBody.rotateAngleY;
 			bipedRightArm.rotateAngleY += bipedBody.rotateAngleY;
@@ -366,11 +365,11 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 				f6 *= f6;
 				f6 *= f6;
 				f6 = 1.0F - f6;
-				f7 = MathHelper.sin(f6 * (float)Math.PI);
-				f8 = MathHelper.sin(onGroundR * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
+				f7 = mh_sin(f6 * (float)Math.PI);
+				f8 = mh_sin(onGroundR * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
 				bipedRightArm.rotateAngleX -= (double)f7 * 1.2D + (double)f8;
 				bipedRightArm.rotateAngleY += bipedBody.rotateAngleY * 2.0F;
-				bipedRightArm.rotateAngleZ = MathHelper.sin(onGroundR * 3.141593F) * -0.4F;
+				bipedRightArm.rotateAngleZ = mh_sin(onGroundR * 3.141593F) * -0.4F;
 			} else {
 				bipedRightArm.rotateAngleX += bipedBody.rotateAngleY;
 			}
@@ -380,11 +379,11 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 				f6 *= f6;
 				f6 *= f6;
 				f6 = 1.0F - f6;
-				f7 = MathHelper.sin(f6 * (float)Math.PI);
-				f8 = MathHelper.sin(onGroundL * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
+				f7 = mh_sin(f6 * (float)Math.PI);
+				f8 = mh_sin(onGroundL * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
 				bipedLeftArm.rotateAngleX -= (double)f7 * 1.2D + (double)f8;
 				bipedLeftArm.rotateAngleY += bipedBody.rotateAngleY * 2.0F;
-				bipedLeftArm.rotateAngleZ = MathHelper.sin(onGroundL * 3.141593F) * 0.4F;
+				bipedLeftArm.rotateAngleZ = mh_sin(onGroundL * 3.141593F) * 0.4F;
 			} else {
 				bipedLeftArm.rotateAngleX += bipedBody.rotateAngleY;
 			}
@@ -399,27 +398,27 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 			hemSkirt.rotateAngleX += 0.3F;
 			float upperBodyLength = bodyPosY - headPosY;
 			float lowerBodyLength = legPosY - bodyPosY;
-			bipedHead.rotationPointZ -= upperBodyLength * MathHelper.sin(bipedBody.rotateAngleX);
-			bipedHead.rotationPointY += upperBodyLength * (1 - MathHelper.cos(bipedBody.rotateAngleX));
-			bipedRightLeg.rotationPointZ += lowerBodyLength * MathHelper.sin(bipedBody.rotateAngleX);
-			bipedLeftLeg.rotationPointZ += lowerBodyLength * MathHelper.sin(bipedBody.rotateAngleX);
-			bipedRightLeg.rotationPointY -= lowerBodyLength * (1 - MathHelper.cos(bipedBody.rotateAngleX));
-			bipedLeftLeg.rotationPointY -= lowerBodyLength * (1 - MathHelper.cos(bipedBody.rotateAngleX));
-			Skirt.rotationPointZ += lowerBodyLength * MathHelper.sin(bipedBody.rotateAngleX);
-			Skirt.rotationPointY -= lowerBodyLength * (1 - MathHelper.cos(bipedBody.rotateAngleX));
-			mainFrame.rotationPointY += lowerBodyLength * (1 - MathHelper.cos(bipedBody.rotateAngleX));
+			bipedHead.rotationPointZ -= upperBodyLength * mh_sin(bipedBody.rotateAngleX);
+			bipedHead.rotationPointY += upperBodyLength * (1 - mh_cos(bipedBody.rotateAngleX));
+			bipedRightLeg.rotationPointZ += lowerBodyLength * mh_sin(bipedBody.rotateAngleX);
+			bipedLeftLeg.rotationPointZ += lowerBodyLength * mh_sin(bipedBody.rotateAngleX);
+			bipedRightLeg.rotationPointY -= lowerBodyLength * (1 - mh_cos(bipedBody.rotateAngleX));
+			bipedLeftLeg.rotationPointY -= lowerBodyLength * (1 - mh_cos(bipedBody.rotateAngleX));
+			Skirt.rotationPointZ += lowerBodyLength * mh_sin(bipedBody.rotateAngleX);
+			Skirt.rotationPointY -= lowerBodyLength * (1 - mh_cos(bipedBody.rotateAngleX));
+			mainFrame.rotationPointY += lowerBodyLength * (1 - mh_cos(bipedBody.rotateAngleX));
 		} else {
 			// 通常立ち
 		}
 		
 		if (isWait) {
 			//待機状態の特別表示
-			bipedRightArm.rotateAngleX += MathHelper.sin(ticksExisted * 0.062F) * 0.05F -0.6F;
+			bipedRightArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F -0.6F;
 			bipedRightArm.rotateAngleZ -= 0.4F;
 			Arms[0].rotateAngleZ -= 1.5F;
 			Arms[0].rotateAngleX -= 0.5F;
 			Arms[0].rotateAngleY += 1.5F;
-			bipedLeftArm.rotateAngleX += MathHelper.sin(ticksExisted * 0.062F) * 0.05F -0.6F;
+			bipedLeftArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F -0.6F;
 			bipedLeftArm.rotateAngleZ += 0.4F;
 			Arms[1].rotateAngleZ += 1.5F;
 			Arms[1].rotateAngleX -= 0.5F;
@@ -428,8 +427,8 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 			if (aimedBow) {
 				// 弓構え
 				float onGround = 0.0F; //lmmm未使用変数
-				float f6 = MathHelper.sin(onGround * 3.141593F);
-				float f7 = MathHelper.sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
+				float f6 = mh_sin(onGround * 3.141593F);
+				float f7 = mh_sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
 				bipedRightArm.rotateAngleZ = 0.0F;
 				bipedLeftArm.rotateAngleZ = 0.0F;
 				bipedRightArm.rotateAngleY = -(0.1F - f6 * 0.6F);
@@ -438,10 +437,10 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 				bipedLeftArm.rotateAngleX = -1.470796F;
 				bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
 				bipedLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-				bipedRightArm.rotateAngleZ += MathHelper.cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedLeftArm.rotateAngleZ -= MathHelper.cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedRightArm.rotateAngleX += MathHelper.sin(ticksExisted * 0.062F) * 0.05F;
-				bipedLeftArm.rotateAngleX -= MathHelper.sin(ticksExisted * 0.062F) * 0.05F;
+				bipedRightArm.rotateAngleZ += mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
+				bipedLeftArm.rotateAngleZ -= mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
+				bipedRightArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F;
+				bipedLeftArm.rotateAngleX -= mh_sin(ticksExisted * 0.062F) * 0.05F;
 				bipedRightArm.rotateAngleX += bipedHead.rotateAngleX;
 				bipedLeftArm.rotateAngleX += bipedHead.rotateAngleX;
 				bipedRightArm.rotateAngleY += bipedHead.rotateAngleY;
@@ -450,10 +449,10 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 				// 通常
 				bipedRightArm.rotateAngleZ += 0.3F;
 				bipedLeftArm.rotateAngleZ -= 0.3F;
-				bipedRightArm.rotateAngleZ += MathHelper.cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedLeftArm.rotateAngleZ -= MathHelper.cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedRightArm.rotateAngleX += MathHelper.sin(ticksExisted * 0.062F) * 0.05F;
-				bipedLeftArm.rotateAngleX -= MathHelper.sin(ticksExisted * 0.062F) * 0.05F;
+				bipedRightArm.rotateAngleZ += mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
+				bipedLeftArm.rotateAngleZ -= mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
+				bipedRightArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F;
+				bipedLeftArm.rotateAngleX -= mh_sin(ticksExisted * 0.062F) * 0.05F;
 			}
 		}
 		//
