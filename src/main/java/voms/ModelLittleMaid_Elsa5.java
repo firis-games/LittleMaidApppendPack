@@ -168,7 +168,7 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 	 * 姿勢制御・初期化
 	 */
 	@Override
-	public void setLivingAnimations(IModelCaps pEntityCaps, float f, float f1, float pRenderPartialTicks) {
+	public void setLivingAnimations(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float partialTickTime) {
 		//INIT POSITION
 		bipedHead.setRotationPoint(0F, headPosY, 0F);
 		HeadMount.setRotationPoint(0F, -4F, 0F);
@@ -243,8 +243,8 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		mainFrame.rotateAngleZ = 0F;
 		
 		//おねだり
-		bipedHead.rotateAngleZ = ModelCapsHelper.getCapsValueFloat(pEntityCaps, caps_interestedAngle, (Float)pRenderPartialTicks);
-		if(ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isLookSuger)) {
+		bipedHead.rotateAngleZ = ModelCapsHelper.getCapsValueFloat(entityCaps, caps_interestedAngle, (Float)partialTickTime);
+		if(ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_isLookSuger)) {
 			//うるうる
 			float fe1 = rand.nextFloat() - 0.5F;
 			float fe2 = rand.nextFloat() - 0.5F;
@@ -257,8 +257,8 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		
 		// まばたき from SR2
 		float blinkFreq = 0.16F; //まばたき頻度, min: 0
-		blinkFreq += 1F - (float)ModelCapsHelper.getCapsValueInt(pEntityCaps, caps_health) / 20F; //体力少ないとまばたき多くなる
-		float f3 = (float)(entityTicksExisted + pRenderPartialTicks + entityIdFactor) * 0.01F; //位相
+		blinkFreq += 1F - (float)ModelCapsHelper.getCapsValueInt(entityCaps, caps_health) / 20F; //体力少ないとまばたき多くなる
+		float f3 = (float)(entityTicksExisted + partialTickTime + entityIdFactor) * 0.01F; //位相
 		float f4 = (float)(Math.sin(f3 * 3F) + Math.sin(f3 * 17F) + Math.sin(f3 * 37F) + blinkFreq-2.23309F); //パルス列
 		if (f4 < 0) {
 			//開
@@ -271,8 +271,8 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		}
 		
 		//ジャンプふわり
-		String ent = ModelCapsHelper.getCapsValueString(pEntityCaps, caps_entityName);
-		float velY = (float)ModelCapsHelper.getCapsValueDouble(pEntityCaps, caps_motionY) + 0.1F;
+		String ent = ModelCapsHelper.getCapsValueString(entityCaps, caps_entityName);
+		float velY = (float)ModelCapsHelper.getCapsValueDouble(entityCaps, caps_motionY) + 0.1F;
 		velY = ent.equals("Dinnerbone") ? -velY : velY;
 		
 		//スカート
@@ -286,7 +286,7 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		hemSkirt.rotationPointY  += fwBuf1;
 		hemSkirt.rotationPointY  += fwBuf1;
 		//髪
-		if(!ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isWet)) {
+		if(!ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_isWet)) {
 			float fwBuf5 = velY * 2.1F;
 			fwBuf5 = fwBuf5>0.1F ? 0.1F : fwBuf5;
 			fwBuf5 = fwBuf5<-0.7F ? -0.7F : fwBuf5;
@@ -300,10 +300,10 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 	 * 姿勢制御・更新差分
 	 */
 	@Override
-	public void setRotationAngles(float f, float f1, float ticksExisted, float pheadYaw, float pheadPitch, float f5, IModelCaps pEntityCaps) {
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
 		//顔向き
-		bipedHead.rotateAngleY += pheadYaw / 57.29578F;
-		bipedHead.rotateAngleX += pheadPitch / 57.29578F;
+		bipedHead.rotateAngleY += netHeadYaw / 57.29578F;
+		bipedHead.rotateAngleX += headPitch / 57.29578F;
 		
 		//ポニテツインテ
 		Ponytail.rotateAngleX += BunchR.rotateAngleX = BunchL.rotateAngleX = -bipedHead.rotateAngleX;
@@ -315,12 +315,12 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		}
 		
 		//歩行
-		bipedRightArm.rotateAngleX -= mh_cos(f * 0.5656F) * 0.8F * f1;
-		bipedLeftArm.rotateAngleX += mh_cos(f * 0.5656F) * 0.8F * f1;
-		bipedRightLeg.rotateAngleX += mh_cos(f * 0.5656F) * 1.2F * f1;
-		bipedLeftLeg.rotateAngleX -= mh_cos(f * 0.5656F) * 1.2F * f1;
-		Skirt.rotateAngleY += mh_cos(f * 0.5656F) * 0.15F * f1;
-		hemSkirt.rotateAngleY += mh_cos(f * 0.5656F) * 0.25F * f1;
+		bipedRightArm.rotateAngleX -= mh_cos(limbSwing * 0.5656F) * 0.8F * limbSwingAmount;
+		bipedLeftArm.rotateAngleX += mh_cos(limbSwing * 0.5656F) * 0.8F * limbSwingAmount;
+		bipedRightLeg.rotateAngleX += mh_cos(limbSwing * 0.5656F) * 1.2F * limbSwingAmount;
+		bipedLeftLeg.rotateAngleX -= mh_cos(limbSwing * 0.5656F) * 1.2F * limbSwingAmount;
+		Skirt.rotateAngleY += mh_cos(limbSwing * 0.5656F) * 0.15F * limbSwingAmount;
+		hemSkirt.rotateAngleY += mh_cos(limbSwing * 0.5656F) * 0.25F * limbSwingAmount;
 		
 		if (isRiding) {
 			// 乗り物に乗っている
@@ -412,12 +412,12 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		
 		if (isWait) {
 			//待機状態の特別表示
-			bipedRightArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F -0.6F;
+			bipedRightArm.rotateAngleX += mh_sin(ageInTicks * 0.062F) * 0.05F -0.6F;
 			bipedRightArm.rotateAngleZ -= 0.4F;
 			Arms[0].rotateAngleZ -= 1.5F;
 			Arms[0].rotateAngleX -= 0.5F;
 			Arms[0].rotateAngleY += 1.5F;
-			bipedLeftArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F -0.6F;
+			bipedLeftArm.rotateAngleX += mh_sin(ageInTicks * 0.062F) * 0.05F -0.6F;
 			bipedLeftArm.rotateAngleZ += 0.4F;
 			Arms[1].rotateAngleZ += 1.5F;
 			Arms[1].rotateAngleX -= 0.5F;
@@ -436,10 +436,10 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 				bipedLeftArm.rotateAngleX = -1.470796F;
 				bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
 				bipedLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-				bipedRightArm.rotateAngleZ += mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedLeftArm.rotateAngleZ -= mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedRightArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F;
-				bipedLeftArm.rotateAngleX -= mh_sin(ticksExisted * 0.062F) * 0.05F;
+				bipedRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+				bipedLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+				bipedRightArm.rotateAngleX += mh_sin(ageInTicks * 0.062F) * 0.05F;
+				bipedLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.062F) * 0.05F;
 				bipedRightArm.rotateAngleX += bipedHead.rotateAngleX;
 				bipedLeftArm.rotateAngleX += bipedHead.rotateAngleX;
 				bipedRightArm.rotateAngleY += bipedHead.rotateAngleY;
@@ -448,10 +448,10 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 				// 通常
 				bipedRightArm.rotateAngleZ += 0.3F;
 				bipedLeftArm.rotateAngleZ -= 0.3F;
-				bipedRightArm.rotateAngleZ += mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedLeftArm.rotateAngleZ -= mh_cos(ticksExisted * 0.09F) * 0.05F + 0.05F;
-				bipedRightArm.rotateAngleX += mh_sin(ticksExisted * 0.062F) * 0.05F;
-				bipedLeftArm.rotateAngleX -= mh_sin(ticksExisted * 0.062F) * 0.05F;
+				bipedRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+				bipedLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+				bipedRightArm.rotateAngleX += mh_sin(ageInTicks * 0.062F) * 0.05F;
+				bipedLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.062F) * 0.05F;
 			}
 		}
 		//

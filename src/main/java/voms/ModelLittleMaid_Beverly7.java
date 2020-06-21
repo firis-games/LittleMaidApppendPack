@@ -225,7 +225,7 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 	* 姿勢制御・初期化
 	*/
 	@Override
-	public void setLivingAnimations(IModelCaps pEntityCaps, float f, float f1, float pRenderPartialTicks) {
+	public void setLivingAnimations(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float partialTickTime) {
 		//INIT POSITION
 		bipedHead.setRotationPoint(0F, headPosY, 0F);
 		HeadMount.setRotationPoint(0F, -4F, 0F);
@@ -340,8 +340,8 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		mainFrame.rotateAngleZ = 0F;
 		
 		//おねだり
-		bipedHead.rotateAngleZ = ModelCapsHelper.getCapsValueFloat(pEntityCaps, caps_interestedAngle, (Float)pRenderPartialTicks);
-		if(ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isLookSuger)) {
+		bipedHead.rotateAngleZ = ModelCapsHelper.getCapsValueFloat(entityCaps, caps_interestedAngle, (Float)partialTickTime);
+		if(ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_isLookSuger)) {
 			//うるうる
 			float fe1 = rand.nextFloat() - 0.5F;
 			float fe2 = rand.nextFloat() - 0.5F;
@@ -354,8 +354,8 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		
 		// まばたき from SR2
 		float blinkFreq = 0.20F; //まばたき頻度, min: 0
-		blinkFreq += 1F - (float)ModelCapsHelper.getCapsValueInt(pEntityCaps, caps_health) / 20F; //体力少ないとまばたき多くなる
-		float idTicks = entityTicksExisted + pRenderPartialTicks + entityIdFactor;
+		blinkFreq += 1F - (float)ModelCapsHelper.getCapsValueInt(entityCaps, caps_health) / 20F; //体力少ないとまばたき多くなる
+		float idTicks = entityTicksExisted + partialTickTime + entityIdFactor;
 		float f3 = idTicks * 0.01F; //位相
 		float f4 = (float)(Math.sin(f3 * 3F) + Math.sin(f3 * 17F) + Math.sin(f3 * 37F) + blinkFreq-2.23309F); //パルス列
 		if (f4 < 0) {
@@ -380,8 +380,8 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		bipedLeftLeg.rotateAngleX += 0.36F * (1 - legSlideDelay);
 		
 		//ジャンプふわり
-		String ent = ModelCapsHelper.getCapsValueString(pEntityCaps, caps_entityName);
-		float velY = (float)ModelCapsHelper.getCapsValueDouble(pEntityCaps, caps_motionY) + 0.1F;
+		String ent = ModelCapsHelper.getCapsValueString(entityCaps, caps_entityName);
+		float velY = (float)ModelCapsHelper.getCapsValueDouble(entityCaps, caps_motionY) + 0.1F;
 		velY = ent.equals("Dinnerbone") ? -velY : velY;
 		
 		//スカート
@@ -400,7 +400,7 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		hemSkirtR2.rotationPointY  += fwBuf2;
 		hemSkirtL2.rotationPointY  += fwBuf2;
 		//髪
-		if(!ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_isWet)) {
+		if(!ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_isWet)) {
 			float fwBuf5 = velY * 2.1F;
 			fwBuf5 = fwBuf5>0.1F ? 0.1F : fwBuf5;
 			fwBuf5 = fwBuf5<-0.7F ? -0.7F : fwBuf5;
@@ -414,10 +414,10 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 	* 姿勢制御・更新差分
 	*/
 	@Override
-	public void setRotationAngles(float f, float f1, float ticksExisted, float pheadYaw, float pheadPitch, float f5, IModelCaps pEntityCaps) {
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
 		//顔向き
-		bipedHead.rotateAngleY += pheadYaw / 57.29578F;
-		bipedHead.rotateAngleX += pheadPitch / 57.29578F;
+		bipedHead.rotateAngleY += netHeadYaw / 57.29578F;
+		bipedHead.rotateAngleX += headPitch / 57.29578F;
 		//ポニテツインテ
 		Ponytail.rotateAngleX += BunchR.rotateAngleX = BunchL.rotateAngleX = -bipedHead.rotateAngleX;
 		Ponytail.rotateAngleZ -= bipedHead.rotateAngleZ;
@@ -429,7 +429,7 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		
 		if (isRiding) {
 			// 背負われている
-			String ridingType = ModelCapsHelper.getCapsValueString(pEntityCaps, caps_getRidingType);
+			String ridingType = ModelCapsHelper.getCapsValueString(entityCaps, caps_getRidingType);
 			if(ridingType.equals("player") || ridingType.equals("littlemaid")) {
 				bipedRightArm.rotateAngleX -= 1.3F;
 				bipedLeftArm.rotateAngleX -= 1.3F;
@@ -483,7 +483,7 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 				}
 			}
 		} else {
-			if (isSneak || !ModelCapsHelper.getCapsValueBoolean(pEntityCaps, caps_PosBlockAir, 0D, 2D, 0D)) {
+			if (isSneak || !ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_PosBlockAir, 0D, 2D, 0D)) {
 				//しゃがみ 頭上注意 
 				if (isWait) {
 					//膝立ち
@@ -495,7 +495,7 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 				} else { 
 					//中腰
 					bipedBody.rotateAngleX += 0.7F;
-					hipBody.rotateAngleX -= 0.1F + mh_sin(ticksExisted * 0.057F) * 0.03F;
+					hipBody.rotateAngleX -= 0.1F + mh_sin(ageInTicks * 0.057F) * 0.03F;
 					upperRightArm.rotateAngleX += 0.1F;
 					upperLeftArm.rotateAngleX += 0.1F;
 					upperRightLeg.rotateAngleY -= 0.07F;
@@ -507,47 +507,47 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 					mainFrame.rotationPointY += 0.4F;
 				}
 				//しゃがみ歩行
-				float f15 = mh_sin(f * 0.6565F); //wave1
-				float f16 = mh_cos(f * 0.6565F); //wave2
+				float f15 = mh_sin(limbSwing * 0.6565F); //wave1
+				float f16 = mh_cos(limbSwing * 0.6565F); //wave2
 				float f22 = f15 > f16 ? f15 : f16; //upper wave
 				float f35 = f15 < f16 ? f15 : f16; //lower wave
 				
-				upperRightArm.rotateAngleX -= f15 * 0.2F * f1;
-				upperLeftArm.rotateAngleX += f15 * 0.2F * f1;
-				bipedRightArm.rotateAngleX -= f22 * 0.7F * f1;
-				bipedLeftArm.rotateAngleX += f35 * 0.7F * f1;
+				upperRightArm.rotateAngleX -= f15 * 0.2F * limbSwingAmount;
+				upperLeftArm.rotateAngleX += f15 * 0.2F * limbSwingAmount;
+				bipedRightArm.rotateAngleX -= f22 * 0.7F * limbSwingAmount;
+				bipedLeftArm.rotateAngleX += f35 * 0.7F * limbSwingAmount;
 				
-				upperRightLeg.rotateAngleX += f15 * 0.2F * f1;
-				upperLeftLeg.rotateAngleX -= f15 * 0.2F * f1;
-				bipedRightLeg.rotateAngleX += f22 * 0.7F * f1;
-				bipedLeftLeg.rotateAngleX -= f35 * 0.7F * f1;
+				upperRightLeg.rotateAngleX += f15 * 0.2F * limbSwingAmount;
+				upperLeftLeg.rotateAngleX -= f15 * 0.2F * limbSwingAmount;
+				bipedRightLeg.rotateAngleX += f22 * 0.7F * limbSwingAmount;
+				bipedLeftLeg.rotateAngleX -= f35 * 0.7F * limbSwingAmount;
 				
-				bipedBody.rotateAngleY -= f15 * 0.1F * f1;
-				hipBody.rotateAngleY += f15 * 0.1F * f1 - bipedBody.rotateAngleY;
-				breastR.rotateAngleX -= f16 * f16 * 0.18F * f1 - mh_sin(ticksExisted * 0.057F) * 0.05F;
-				breastL.rotateAngleX -= f16 * f16 * 0.18F * f1 - mh_sin(ticksExisted * 0.057F) * 0.05F;
+				bipedBody.rotateAngleY -= f15 * 0.1F * limbSwingAmount;
+				hipBody.rotateAngleY += f15 * 0.1F * limbSwingAmount - bipedBody.rotateAngleY;
+				breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
+				breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
 				mainFrame.rotationPointY += f16 * f16 * 0.5F;
 			} else {
 				//通常歩行
-				float f15 = mh_sin(f * 0.4444F); //wave1
-				float f16 = mh_cos(f * 0.4444F); //wave2
+				float f15 = mh_sin(limbSwing * 0.4444F); //wave1
+				float f16 = mh_cos(limbSwing * 0.4444F); //wave2
 				float f22 = f15 > f16 ? f15 : f16; //upper wave
 				float f35 = f15 < f16 ? f15 : f16; //lower wave
 				
-				upperRightArm.rotateAngleX -= f15 * 0.7F * f1;
-				upperLeftArm.rotateAngleX += f15 * 0.7F * f1;
-				bipedRightArm.rotateAngleX -= f22 * 0.7F * f1;
-				bipedLeftArm.rotateAngleX += f35 * 0.7F * f1;
+				upperRightArm.rotateAngleX -= f15 * 0.7F * limbSwingAmount;
+				upperLeftArm.rotateAngleX += f15 * 0.7F * limbSwingAmount;
+				bipedRightArm.rotateAngleX -= f22 * 0.7F * limbSwingAmount;
+				bipedLeftArm.rotateAngleX += f35 * 0.7F * limbSwingAmount;
 				
-				upperRightLeg.rotateAngleX += f15 * 0.9F * f1;
-				upperLeftLeg.rotateAngleX -= f15 * 0.9F * f1;
-				bipedRightLeg.rotateAngleX += f22 * 0.9F * f1;
-				bipedLeftLeg.rotateAngleX -= f35 * 0.9F * f1;
+				upperRightLeg.rotateAngleX += f15 * 0.9F * limbSwingAmount;
+				upperLeftLeg.rotateAngleX -= f15 * 0.9F * limbSwingAmount;
+				bipedRightLeg.rotateAngleX += f22 * 0.9F * limbSwingAmount;
+				bipedLeftLeg.rotateAngleX -= f35 * 0.9F * limbSwingAmount;
 				
-				bipedBody.rotateAngleY -= f15 * 0.2F * f1;
-				hipBody.rotateAngleY += f15 * 0.3F * f1 - bipedBody.rotateAngleY;
-				breastR.rotateAngleX -= f16 * f16 * 0.18F * f1 - mh_sin(ticksExisted * 0.057F) * 0.05F;
-				breastL.rotateAngleX -= f16 * f16 * 0.18F * f1 - mh_sin(ticksExisted * 0.057F) * 0.05F;
+				bipedBody.rotateAngleY -= f15 * 0.2F * limbSwingAmount;
+				hipBody.rotateAngleY += f15 * 0.3F * limbSwingAmount - bipedBody.rotateAngleY;
+				breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
+				breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
 				mainFrame.rotationPointY += f16 * f16 * 0.1F;
 			}
 		}
@@ -600,12 +600,12 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		
 		if (isWait) {
 			// 待機状態 腕
-			upperRightArm.rotateAngleX += mh_sin(ticksExisted * 0.057F) * 0.05F - 0.5F;
+			upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F - 0.5F;
 			upperRightArm.rotateAngleZ -= 0.3F;
 			Arms[0].rotateAngleZ -= 1.5F;
 			Arms[0].rotateAngleX -= 0.5F;
 			Arms[0].rotateAngleY += 1.5F;
-			upperLeftArm.rotateAngleX += mh_sin(ticksExisted * 0.057F) * 0.05F - 0.5F;
+			upperLeftArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F - 0.5F;
 			upperLeftArm.rotateAngleZ += 0.3F;
 			Arms[1].rotateAngleZ += 1.5F;
 			Arms[1].rotateAngleX -= 0.5F;
@@ -626,10 +626,10 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 				upperLeftArm.rotateAngleX = -1.470796F;
 				upperRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
 				upperLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-				upperRightArm.rotateAngleZ += mh_cos(ticksExisted * 0.08F) * 0.03F + 0.05F;
-				upperLeftArm.rotateAngleZ -= mh_cos(ticksExisted * 0.08F) * 0.03F + 0.05F;
-				upperRightArm.rotateAngleX += mh_sin(ticksExisted * 0.057F) * 0.05F;
-				upperLeftArm.rotateAngleX -= mh_sin(ticksExisted * 0.057F) * 0.05F;
+				upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+				upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+				upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F;
+				upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.057F) * 0.05F;
 				upperRightArm.rotateAngleX += bipedHead.rotateAngleX;
 				upperLeftArm.rotateAngleX += bipedHead.rotateAngleX;
 				upperRightArm.rotateAngleY += bipedHead.rotateAngleY;
@@ -640,10 +640,10 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 				upperLeftArm.rotateAngleZ -= 0.2F;
 				bipedRightArm.rotateAngleZ += 0.05F;
 				bipedLeftArm.rotateAngleZ -= 0.05F;
-				upperRightArm.rotateAngleZ += mh_cos(ticksExisted * 0.08F) * 0.03F + 0.05F;
-				upperLeftArm.rotateAngleZ -= mh_cos(ticksExisted * 0.08F) * 0.03F + 0.05F;
-				upperRightArm.rotateAngleX += mh_sin(ticksExisted * 0.057F) * 0.05F;
-				upperLeftArm.rotateAngleX -= mh_sin(ticksExisted * 0.057F) * 0.05F;
+				upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+				upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+				upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F;
+				upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.057F) * 0.05F;
 			}
 		}
 		
