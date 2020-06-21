@@ -219,12 +219,13 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 	public float getWidth() {
 		return 0.5F;
 	}
-
+	
 	/**
-	* 姿勢制御・初期化
-	*/
+	 * 初期ポーズ設定
+	 */
 	@Override
-	public void setLivingAnimations(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float partialTickTime) {
+	public void setDefaultPause() {
+		
 		//INIT POSITION
 		bipedHead.setRotationPoint(0F, headPosY, 0F);
 		HeadMount.setRotationPoint(0F, -4F, 0F);
@@ -338,6 +339,17 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		mainFrame.rotateAngleY = 0F;
 		mainFrame.rotateAngleZ = 0F;
 		
+	}
+
+	/**
+	* 姿勢制御・初期化
+	*/
+	@Override
+	public void setLivingAnimations(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float partialTickTime) {
+		
+		//初期ポーズ
+		this.setDefaultPause();
+		
 		//おねだり
 		bipedHead.rotateAngleZ = ModelCapsHelper.getCapsValueFloat(entityCaps, caps_interestedAngle, (Float)partialTickTime);
 		if(ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_isLookSuger)) {
@@ -366,8 +378,15 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 			eyeR.setVisible(false);
 			eyeL.setVisible(false);
 		}
+	}
+	
+	/**
+	 * Chloe独自モーション
+	 */
+	protected void setRotationAnglesChloe(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
 		
 		//脚 姿勢変化
+		float idTicks = entityTicksExisted + ageInTicks + entityIdFactor;
 		float legSlideDelay = idTicks % 2011 - 2000;
 		legSlideDelay = legSlideDelay<0 ? 0F : legSlideDelay / 10;
 		if(idTicks % 4022 < 2011) {
@@ -415,6 +434,10 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 	*/
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
+		
+		//Chloe独自モーション設定
+		this.setRotationAnglesChloe(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
+		
 		//顔向き
 		bipedHead.rotateAngleY += netHeadYaw / 57.29578F;
 		bipedHead.rotateAngleX += headPitch / 57.29578F;
