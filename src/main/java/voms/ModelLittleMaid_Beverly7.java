@@ -5,6 +5,7 @@ import java.util.Random;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
+import firis.lmmm.api.model.motion.LMMotionSitdown;
 import firis.lmmm.api.renderer.ModelRenderer;
 
 /**
@@ -427,9 +428,10 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 			BunchL.rotateAngleZ -= bipedHead.rotateAngleZ * 0.2F;
 		}
 		
+		//騎乗
 		if (isRiding) {
-			// 背負われている
 			String ridingType = ModelCapsHelper.getCapsValueString(entityCaps, caps_getRidingType);
+			// 背負われている
 			if(ridingType.equals("player") || ridingType.equals("littlemaid")) {
 				bipedRightArm.rotateAngleX -= 1.3F;
 				bipedLeftArm.rotateAngleX -= 1.3F;
@@ -482,74 +484,73 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 					hemSkirtL2.rotationPointZ -= 1F;
 				}
 			}
-		} else {
-			if (isSneak || !ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_PosBlockAir, 0D, 2D, 0D)) {
-				//しゃがみ 頭上注意 
-				if (isWait) {
-					//膝立ち
-					upperRightLeg.rotateAngleX -= 0.1F;
-					upperLeftLeg.rotateAngleX -= 0.2F;
-					bipedRightLeg.rotateAngleX += 1.7F;
-					bipedLeftLeg.rotateAngleX += 1.8F;
-					mainFrame.rotationPointY += 6F;
-				} else { 
-					//中腰
-					bipedBody.rotateAngleX += 0.7F;
-					hipBody.rotateAngleX -= 0.1F + mh_sin(ageInTicks * 0.057F) * 0.03F;
-					upperRightArm.rotateAngleX += 0.1F;
-					upperLeftArm.rotateAngleX += 0.1F;
-					upperRightLeg.rotateAngleY -= 0.07F;
-					upperLeftLeg.rotateAngleY += 0.07F;
-					upperRightLeg.rotateAngleX -= 0.37F;
-					upperLeftLeg.rotateAngleX -= 0.32F;
-					bipedRightLeg.rotateAngleX += 0.32F;
-					bipedLeftLeg.rotateAngleX += 0.22F;
-					mainFrame.rotationPointY += 0.4F;
-				}
-				//しゃがみ歩行
-				float f15 = mh_sin(limbSwing * 0.6565F); //wave1
-				float f16 = mh_cos(limbSwing * 0.6565F); //wave2
-				float f22 = f15 > f16 ? f15 : f16; //upper wave
-				float f35 = f15 < f16 ? f15 : f16; //lower wave
-				
-				upperRightArm.rotateAngleX -= f15 * 0.2F * limbSwingAmount;
-				upperLeftArm.rotateAngleX += f15 * 0.2F * limbSwingAmount;
-				bipedRightArm.rotateAngleX -= f22 * 0.7F * limbSwingAmount;
-				bipedLeftArm.rotateAngleX += f35 * 0.7F * limbSwingAmount;
-				
-				upperRightLeg.rotateAngleX += f15 * 0.2F * limbSwingAmount;
-				upperLeftLeg.rotateAngleX -= f15 * 0.2F * limbSwingAmount;
-				bipedRightLeg.rotateAngleX += f22 * 0.7F * limbSwingAmount;
-				bipedLeftLeg.rotateAngleX -= f35 * 0.7F * limbSwingAmount;
-				
-				bipedBody.rotateAngleY -= f15 * 0.1F * limbSwingAmount;
-				hipBody.rotateAngleY += f15 * 0.1F * limbSwingAmount - bipedBody.rotateAngleY;
-				breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
-				breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
-				mainFrame.rotationPointY += f16 * f16 * 0.5F;
-			} else {
-				//通常歩行
-				float f15 = mh_sin(limbSwing * 0.4444F); //wave1
-				float f16 = mh_cos(limbSwing * 0.4444F); //wave2
-				float f22 = f15 > f16 ? f15 : f16; //upper wave
-				float f35 = f15 < f16 ? f15 : f16; //lower wave
-				
-				upperRightArm.rotateAngleX -= f15 * 0.7F * limbSwingAmount;
-				upperLeftArm.rotateAngleX += f15 * 0.7F * limbSwingAmount;
-				bipedRightArm.rotateAngleX -= f22 * 0.7F * limbSwingAmount;
-				bipedLeftArm.rotateAngleX += f35 * 0.7F * limbSwingAmount;
-				
-				upperRightLeg.rotateAngleX += f15 * 0.9F * limbSwingAmount;
-				upperLeftLeg.rotateAngleX -= f15 * 0.9F * limbSwingAmount;
-				bipedRightLeg.rotateAngleX += f22 * 0.9F * limbSwingAmount;
-				bipedLeftLeg.rotateAngleX -= f35 * 0.9F * limbSwingAmount;
-				
-				bipedBody.rotateAngleY -= f15 * 0.2F * limbSwingAmount;
-				hipBody.rotateAngleY += f15 * 0.3F * limbSwingAmount - bipedBody.rotateAngleY;
-				breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
-				breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
-				mainFrame.rotationPointY += f16 * f16 * 0.1F;
+		} else if (isSneak || !ModelCapsHelper.getCapsValueBoolean(entityCaps, caps_PosBlockAir, 0D, 2D, 0D)) {
+			//しゃがみ 頭上注意
+			if (isWait) {
+				//膝立ち
+				upperRightLeg.rotateAngleX -= 0.1F;
+				upperLeftLeg.rotateAngleX -= 0.2F;
+				bipedRightLeg.rotateAngleX += 1.7F;
+				bipedLeftLeg.rotateAngleX += 1.8F;
+				mainFrame.rotationPointY += 6F;
+			} else { 
+				//中腰
+				bipedBody.rotateAngleX += 0.7F;
+				hipBody.rotateAngleX -= 0.1F + mh_sin(ageInTicks * 0.057F) * 0.03F;
+				upperRightArm.rotateAngleX += 0.1F;
+				upperLeftArm.rotateAngleX += 0.1F;
+				upperRightLeg.rotateAngleY -= 0.07F;
+				upperLeftLeg.rotateAngleY += 0.07F;
+				upperRightLeg.rotateAngleX -= 0.37F;
+				upperLeftLeg.rotateAngleX -= 0.32F;
+				bipedRightLeg.rotateAngleX += 0.32F;
+				bipedLeftLeg.rotateAngleX += 0.22F;
+				mainFrame.rotationPointY += 0.4F;
 			}
+			//しゃがみ歩行
+			float f15 = mh_sin(limbSwing * 0.6565F); //wave1
+			float f16 = mh_cos(limbSwing * 0.6565F); //wave2
+			float f22 = f15 > f16 ? f15 : f16; //upper wave
+			float f35 = f15 < f16 ? f15 : f16; //lower wave
+			
+			upperRightArm.rotateAngleX -= f15 * 0.2F * limbSwingAmount;
+			upperLeftArm.rotateAngleX += f15 * 0.2F * limbSwingAmount;
+			bipedRightArm.rotateAngleX -= f22 * 0.7F * limbSwingAmount;
+			bipedLeftArm.rotateAngleX += f35 * 0.7F * limbSwingAmount;
+			
+			upperRightLeg.rotateAngleX += f15 * 0.2F * limbSwingAmount;
+			upperLeftLeg.rotateAngleX -= f15 * 0.2F * limbSwingAmount;
+			bipedRightLeg.rotateAngleX += f22 * 0.7F * limbSwingAmount;
+			bipedLeftLeg.rotateAngleX -= f35 * 0.7F * limbSwingAmount;
+			
+			bipedBody.rotateAngleY -= f15 * 0.1F * limbSwingAmount;
+			hipBody.rotateAngleY += f15 * 0.1F * limbSwingAmount - bipedBody.rotateAngleY;
+			breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
+			breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
+			mainFrame.rotationPointY += f16 * f16 * 0.5F;
+		} else {
+			//通常歩行
+			float f15 = mh_sin(limbSwing * 0.4444F); //wave1
+			float f16 = mh_cos(limbSwing * 0.4444F); //wave2
+			float f22 = f15 > f16 ? f15 : f16; //upper wave
+			float f35 = f15 < f16 ? f15 : f16; //lower wave
+			
+			upperRightArm.rotateAngleX -= f15 * 0.7F * limbSwingAmount;
+			upperLeftArm.rotateAngleX += f15 * 0.7F * limbSwingAmount;
+			bipedRightArm.rotateAngleX -= f22 * 0.7F * limbSwingAmount;
+			bipedLeftArm.rotateAngleX += f35 * 0.7F * limbSwingAmount;
+			
+			upperRightLeg.rotateAngleX += f15 * 0.9F * limbSwingAmount;
+			upperLeftLeg.rotateAngleX -= f15 * 0.9F * limbSwingAmount;
+			bipedRightLeg.rotateAngleX += f22 * 0.9F * limbSwingAmount;
+			bipedLeftLeg.rotateAngleX -= f35 * 0.9F * limbSwingAmount;
+			
+			bipedBody.rotateAngleY -= f15 * 0.2F * limbSwingAmount;
+			hipBody.rotateAngleY += f15 * 0.3F * limbSwingAmount - bipedBody.rotateAngleY;
+			breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
+			breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.057F) * 0.05F;
+			mainFrame.rotationPointY += f16 * f16 * 0.1F;
+			
 		}
 		
 //		// アイテム持ってるときの腕振りを抑える+表示角オフセット
@@ -612,39 +613,37 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 			Arms[1].rotateAngleY -= 1.5F;
 			breastR.rotationPointX += 0.1F;
 			breastL.rotationPointX -= 0.1F;
+		} else if (aimedBow) {
+			// 弓構え 腕
+			float onGround = 0.0F; //lmmm未使用変数
+			float f6 = mh_sin(onGround * 3.141593F);
+			float f7 = mh_sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
+			upperRightArm.rotateAngleZ = 0.0F;
+			upperLeftArm.rotateAngleZ = 0.0F;
+			upperRightArm.rotateAngleY = -(0.1F - f6 * 0.6F);
+			upperLeftArm.rotateAngleY = 0.1F - f6 * 0.6F;
+			upperRightArm.rotateAngleX = -1.470796F;
+			upperLeftArm.rotateAngleX = -1.470796F;
+			upperRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
+			upperLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
+			upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F;
+			upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.057F) * 0.05F;
+			upperRightArm.rotateAngleX += bipedHead.rotateAngleX;
+			upperLeftArm.rotateAngleX += bipedHead.rotateAngleX;
+			upperRightArm.rotateAngleY += bipedHead.rotateAngleY;
+			upperLeftArm.rotateAngleY += bipedHead.rotateAngleY;
 		} else {
-			if (aimedBow) {
-				// 弓構え 腕
-				float onGround = 0.0F; //lmmm未使用変数
-				float f6 = mh_sin(onGround * 3.141593F);
-				float f7 = mh_sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
-				upperRightArm.rotateAngleZ = 0.0F;
-				upperLeftArm.rotateAngleZ = 0.0F;
-				upperRightArm.rotateAngleY = -(0.1F - f6 * 0.6F);
-				upperLeftArm.rotateAngleY = 0.1F - f6 * 0.6F;
-				upperRightArm.rotateAngleX = -1.470796F;
-				upperLeftArm.rotateAngleX = -1.470796F;
-				upperRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-				upperLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-				upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-				upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-				upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F;
-				upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.057F) * 0.05F;
-				upperRightArm.rotateAngleX += bipedHead.rotateAngleX;
-				upperLeftArm.rotateAngleX += bipedHead.rotateAngleX;
-				upperRightArm.rotateAngleY += bipedHead.rotateAngleY;
-				upperLeftArm.rotateAngleY += bipedHead.rotateAngleY;
-			} else {
-				// 通常
-				upperRightArm.rotateAngleZ += 0.2F;
-				upperLeftArm.rotateAngleZ -= 0.2F;
-				bipedRightArm.rotateAngleZ += 0.05F;
-				bipedLeftArm.rotateAngleZ -= 0.05F;
-				upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-				upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-				upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F;
-				upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.057F) * 0.05F;
-			}
+			// 通常
+			upperRightArm.rotateAngleZ += 0.2F;
+			upperLeftArm.rotateAngleZ -= 0.2F;
+			bipedRightArm.rotateAngleZ += 0.05F;
+			bipedLeftArm.rotateAngleZ -= 0.05F;
+			upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.057F) * 0.05F;
+			upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.057F) * 0.05F;
 		}
 		
 		//
@@ -692,6 +691,11 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		float jsL2 = bipedLeftLeg.rotateAngleX - upperLeftLeg.rotateAngleX;
 		hemSkirtR2.rotateAngleX += jsR2 * 0.75F + hemSkirtR1.rotateAngleX * 0.15F;
 		hemSkirtL2.rotateAngleX += jsL2 * 0.75F + hemSkirtL1.rotateAngleX * 0.15F;
+		
+		//追加モーション（お座り）
+		if (this.isRiding && LMMotionSitdown.SITDOWN.equals((String) entityCaps.getCapsValue(IModelCaps.caps_multimodel_motion))) {
+			this.mainFrame.rotationPointY += 7.00F;
+		}
 	}
 
 }
