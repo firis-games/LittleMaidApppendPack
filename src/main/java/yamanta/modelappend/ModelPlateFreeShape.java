@@ -1,8 +1,11 @@
-package modelAppend;
+package yamanta.modelappend;
 
-import net.minecraft.src.*;
+import firis.lmmm.api.model.parts.ModelBox;
+import firis.lmmm.api.renderer.ModelRenderer;
+import net.minecraft.client.model.PositionTextureVertex;
+import net.minecraft.client.renderer.Tessellator;
 
-public class ModelPlateFreeShape extends MMM_ModelBox
+public class ModelPlateFreeShape extends ModelBox
 {
     private PositionTextureVertex vertexPositions[];
     private TexturedTriangle triList[];
@@ -62,7 +65,7 @@ public class ModelPlateFreeShape extends MMM_ModelBox
      * </ul>
      * @param scale : scale
      */
-    public ModelPlateFreeShape(MMM_ModelRenderer modelrenderer, float vertex[][], float texUV[][], float vertexN[][], float RGBA[],float scale)
+    public ModelPlateFreeShape(ModelRenderer modelrenderer, float vertex[][], float texUV[][], float vertexN[][], float RGBA[],float scale)
     {
         super(modelrenderer, 0, 0, 0f, 0f, 0f, 0, 0, 0, scale);
 
@@ -95,11 +98,13 @@ public class ModelPlateFreeShape extends MMM_ModelBox
         }
     }
 
+    @Override
     public void render(Tessellator par1Tessellator, float par2)
     {
         for (int i = 0; i < triList.length; i++)
         {
-            triList[i].draw(par1Tessellator, par2);
+            //triList[i].draw(par1Tessellator, par2);
+            triList[i].draw(par1Tessellator.getBuffer(), par2);
         }
     }
 }

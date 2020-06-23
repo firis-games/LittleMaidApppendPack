@@ -1,52 +1,53 @@
-package net.minecraft.src;
+package yamanta.modelappend;
 
-import modelAppend.ModelPlateFreeShape;
+import firis.lmmm.api.model.ModelBase;
+import firis.lmmm.api.renderer.ModelRenderer;
 
-public class MMM_ModelRenderer_EX extends MMM_ModelRenderer
+public class ModelRendererEX extends ModelRenderer
 {
 	private int texOffsetX = 0;
 	private int texOffsetY = 0;
-    public MMM_ModelRenderer_EX(MMM_ModelBase var1, String var2)
+    public ModelRendererEX(ModelBase var1, String var2)
     {
         super(var1, var2);
     }
 
-    public MMM_ModelRenderer_EX(MMM_ModelBase var1, int var2, int var3)
+    public ModelRendererEX(ModelBase var1, int var2, int var3)
     {
         super(var1, var2, var3);
         this.texOffsetX = var2;
         this.texOffsetY = var3;
     }
 
-    public MMM_ModelRenderer_EX(MMM_ModelBase var1)
+    public ModelRendererEX(ModelBase var1)
     {
         super(var1);
     }
 
-    public MMM_ModelRenderer_EX(MMM_ModelBase var1, int var2, int var3, float var4, float var5, float var6)
+    public ModelRendererEX(ModelBase var1, int var2, int var3, float var4, float var5, float var6)
     {
         super(var1, var2, var3, var4, var5, var6);
         this.texOffsetX = var2;
         this.texOffsetY = var3;
     }
 
-    public MMM_ModelRenderer_EX(MMM_ModelBase var1, float var2, float var3, float var4)
+    public ModelRendererEX(ModelBase var1, float var2, float var3, float var4)
     {
         super(var1, var2, var3, var4);
     }
 
-    public MMM_ModelRenderer_EX addPlateFreeShape(float[][] var1, float[][] var2, float[][] var3, float[] var4)
+    public ModelRendererEX addPlateFreeShape(float[][] var1, float[][] var2, float[][] var3, float[] var4)
     {
         this.cubeList.add(new ModelPlateFreeShape(this, var1, var2, var3, var4, 0.0F));
         return this;
     }
 
-    public MMM_ModelRenderer_EX addBall(float var1, float var2, float var3, float var4, float var5, float var6)
+    public ModelRendererEX addBall(float var1, float var2, float var3, float var4, float var5, float var6)
     {
         return this.makeBall(var1, var2, var3, var4, var5, var6);
     }
 
-    private MMM_ModelRenderer_EX makeBall(float var1, float var2, float var3, float var4, float var5, float var6)
+    private ModelRendererEX makeBall(float var1, float var2, float var3, float var4, float var5, float var6)
     {
         float[][] var7 = new float[][] {{0.0F, 4.9745197F, -0.0F}, {0.0F, 3.5175202F, 3.5175202F}, {2.4997F, 3.5175202F, 2.4872599F}, {3.5351F, 3.5175202F, -0.0F}, {2.4997F, 3.5175202F, -2.4872599F}, {0.0F, 3.5175202F, -3.5175202F}, { -2.4997F, 3.5175202F, -2.4872599F}, { -3.5351F, 3.5175202F, -0.0F}, { -2.4997F, 3.5175202F, 2.4872599F}, {0.0F, 0.0F, 4.9745197F}, {3.5351F, 0.0F, 3.5175202F}, {4.99939F, 0.0F, 0.0F}, {3.5351F, -0.0F, -3.5175202F}, {0.0F, -0.0F, -4.9745197F}, { -3.5351F, -0.0F, -3.5175202F}, { -4.99939F, 0.0F, 0.0F}, { -3.5351F, 0.0F, 3.5175202F}, {0.0F, -3.5175202F, 3.5175202F}, {2.4997F, -3.5175202F, 2.4872599F}, {3.5351F, -3.5175202F, 0.0F}, {2.4997F, -3.5175202F, -2.4872599F}, {0.0F, -3.5175202F, -3.5175202F}, { -2.4997F, -3.5175202F, -2.4872599F}, { -3.5351F, -3.5175202F, 0.0F}, { -2.4997F, -3.5175202F, 2.4872599F}, {0.0F, -4.9745197F, 0.0F}};
         float[][] var8 = new float[][] {{(float)this.texOffsetX / this.textureWidth, (float)(this.texOffsetY + 1) / this.textureHeight}, {(float)(this.texOffsetX + 1) / this.textureWidth, (float)(this.texOffsetY + 1) / this.textureHeight}, {(float)(this.texOffsetX + 1) / this.textureWidth, (float)this.texOffsetY / this.textureHeight}, {(float)this.texOffsetX / this.textureWidth, (float)this.texOffsetY / this.textureHeight}};

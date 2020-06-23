@@ -1,60 +1,64 @@
-package net.minecraft.src;
+package yamanta;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.lwjgl.opengl.GL11;
+import firis.lmmm.api.caps.IModelCaps;
+import firis.lmmm.api.renderer.ModelRenderer;
+import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
+import net.minecraft.util.math.MathHelper;
+import yamanta.modelappend.ModelRendererEX;
 
-public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
+public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 
-	public MMM_ModelRenderer eyeR;
-	public MMM_ModelRenderer eyeL;
-	public MMM_ModelRenderer Prim;
-	public MMM_ModelRenderer Tail;
-	public MMM_ModelRenderer Tail2;
-	public MMM_ModelRenderer Tail3;
-	public MMM_ModelRenderer Tail4;
-	public MMM_ModelRenderer Tail5;
-	public MMM_ModelRenderer Tail6;
-	public MMM_ModelRenderer bipedHeadwear;
-	public MMM_ModelRenderer Ahoge;
-	public MMM_ModelRenderer_EX Skirt21;
-	public MMM_ModelRenderer_EX Skirt22;
-	public MMM_ModelRenderer_EX Skirt23;
-	public MMM_ModelRenderer_EX Skirt24;
-	public MMM_ModelRenderer_EX Skirt25;
-	public MMM_ModelRenderer_EX Skirt26;
-	public MMM_ModelRenderer_EX Skirt27;
-	public MMM_ModelRenderer_EX Skirt28;
-	public MMM_ModelRenderer_EX Skirt29;
-	public MMM_ModelRenderer_EX Skirt210;
-	public MMM_ModelRenderer_EX Skirt211;
-	public MMM_ModelRenderer_EX Skirt212;
-	public MMM_ModelRenderer_EX Skirt213;
-	public MMM_ModelRenderer_EX Skirt214;
-	public MMM_ModelRenderer_EX Skirt215;
-	public MMM_ModelRenderer_EX Skirt216;
-	public MMM_ModelRenderer_EX Band1;
-	public MMM_ModelRenderer_EX EarL1;
-	public MMM_ModelRenderer_EX EarL2;
-	public MMM_ModelRenderer_EX EarR1;
-	public MMM_ModelRenderer_EX EarR2;
-	public MMM_ModelRenderer_EX EarLi1;
-	public MMM_ModelRenderer_EX EarLi2;
-	public MMM_ModelRenderer_EX EarRi1;
-	public MMM_ModelRenderer_EX EarRi2;
-	public MMM_ModelRenderer Shippo1;
-	public MMM_ModelRenderer Shippo2;
-	public MMM_ModelRenderer Shippo3;
-	public MMM_ModelRenderer Shippo4;
-	public MMM_ModelRenderer Shippo5;
-	public MMM_ModelRenderer Shippo6;
-	public MMM_ModelRenderer_EX Glass;
-	public MMM_ModelRenderer DrowaR1;
-	public MMM_ModelRenderer DrowaL1;
-	public MMM_ModelRenderer DrowaR2;
-	public MMM_ModelRenderer DrowaL2;
-	public MMM_ModelRenderer_EX pink;
+	public ModelRenderer eyeR;
+	public ModelRenderer eyeL;
+	public ModelRenderer Prim;
+	public ModelRenderer Tail;
+	public ModelRenderer Tail2;
+	public ModelRenderer Tail3;
+	public ModelRenderer Tail4;
+	public ModelRenderer Tail5;
+	public ModelRenderer Tail6;
+	public ModelRenderer bipedHeadwear;
+	public ModelRenderer Ahoge;
+	public ModelRendererEX Skirt21;
+	public ModelRendererEX Skirt22;
+	public ModelRendererEX Skirt23;
+	public ModelRendererEX Skirt24;
+	public ModelRendererEX Skirt25;
+	public ModelRendererEX Skirt26;
+	public ModelRendererEX Skirt27;
+	public ModelRendererEX Skirt28;
+	public ModelRendererEX Skirt29;
+	public ModelRendererEX Skirt210;
+	public ModelRendererEX Skirt211;
+	public ModelRendererEX Skirt212;
+	public ModelRendererEX Skirt213;
+	public ModelRendererEX Skirt214;
+	public ModelRendererEX Skirt215;
+	public ModelRendererEX Skirt216;
+	public ModelRendererEX Band1;
+	public ModelRendererEX EarL1;
+	public ModelRendererEX EarL2;
+	public ModelRendererEX EarR1;
+	public ModelRendererEX EarR2;
+	public ModelRendererEX EarLi1;
+	public ModelRendererEX EarLi2;
+	public ModelRendererEX EarRi1;
+	public ModelRendererEX EarRi2;
+	public ModelRenderer Shippo1;
+	public ModelRenderer Shippo2;
+	public ModelRenderer Shippo3;
+	public ModelRenderer Shippo4;
+	public ModelRenderer Shippo5;
+	public ModelRenderer Shippo6;
+	public ModelRendererEX Glass;
+	public ModelRenderer DrowaR1;
+	public ModelRenderer DrowaL1;
+	public ModelRenderer DrowaR2;
+	public ModelRenderer DrowaL2;
+	public ModelRendererEX pink;
 	private Map sizeMap;
 
 	private static final float Scale=0.4F;
@@ -92,104 +96,104 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 	//
 
 
-		Arms = new MMM_ModelRenderer[2];
-		Arms[0] = new MMM_ModelRenderer(this, 0, 0);
+		Arms = new ModelRenderer[2];
+		Arms[0] = new ModelRenderer(this, 0, 0);
 		Arms[0].setRotationPoint(-1F, 5F, -1F);
-		Arms[1] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[1] = new ModelRenderer(this, 0, 0);
 		Arms[1].setRotationPoint(1F, 5F, -1F);
 		Arms[1].isInvertX = true;
 		HeadMount.setRotationPoint(0F, -2.8F, 0F);
 
-		bipedHead = new MMM_ModelRenderer(this, 0, 1);
+		bipedHead = new ModelRenderer(this, 0, 1);
 		bipedHead.addBox(-4F, -7F, -4F, 8, 7, 8, psize-Scale);
 		bipedHead.setRotationPoint(0.0F, 1.0F, 0.0F);
 		bipedHead.addChild(HeadMount);
 
-		pink = new MMM_ModelRenderer_EX(this,0,8,0.75f,0.75f,1f);
+		pink = new ModelRendererEX(this,0,8,0.75f,0.75f,1f);
 		pink.addPlate(-4f, -2.7f, -3.653f, 2, 1, 0);
 		pink.addPlate(2f, -2.7f, -3.653f, 2, 1, 0);
 		bipedHead.addChild(pink);
 
-		bipedHeadwear = new MMM_ModelRenderer(this, 24, 0);
+		bipedHeadwear = new ModelRenderer(this, 24, 0);
 		bipedHeadwear.addBox(-4F, 0.0F, 1.0F, 8, 4, 3, psize);
 		bipedHeadwear.setRotationPoint(0.0F, 0.0F, 0.0F);
 //		bipedHeadwear.parentModel = bipedHead;
 		bipedHead.addChild(bipedHeadwear);
 		bipedHeadwear.isHidden=true;
 
-		bipedBody = new MMM_ModelRenderer(this, 32, 8);
+		bipedBody = new ModelRenderer(this, 32, 8);
 		bipedBody.addBox(-3F, 0.0F, -2F, 6, 7, 4, psize-Scale);
 		bipedBody.setRotationPoint(0.0F, 3.0F*Scale, 0.0F);
-		bipedRightLeg = new MMM_ModelRenderer(this, 32, 19);
+		bipedRightLeg = new ModelRenderer(this, 32, 19);
 		bipedRightLeg.addBox(-2F, 0.0F, -2F, 3, 9, 4, psize-Scale);
 		bipedRightLeg.setRotationPoint(-0.9F, 7.0F+ Scale, 0.0F);
-		bipedLeftLeg = new MMM_ModelRenderer(this, 32, 19);
+		bipedLeftLeg = new ModelRenderer(this, 32, 19);
 		bipedLeftLeg.mirror = true;
 		bipedLeftLeg.addBox(-1F, 0.0F, -2F, 3, 9, 4, psize-Scale);
 		bipedLeftLeg.setRotationPoint(0.9F, 7.0F+ Scale, 0.0F);
 
-		Skirt = new MMM_ModelRenderer(this, 0, 16);
+		Skirt = new ModelRenderer(this, 0, 16);
 		Skirt.addBox(-4F, -2F, -4F, 0, 0, 0, psize);
 		Skirt.setRotationPoint(0.0F, 7F, 0.0F);
 
-		DrowaR1 = new MMM_ModelRenderer(this, 46, 25);
+		DrowaR1 = new ModelRenderer(this, 46, 25);
 		DrowaR1.addBox(-2F, -0.0F, -2F, 3, 2, 4, psize-0.1F);
 		DrowaR1.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedRightLeg.addChild(DrowaR1);
 
-		DrowaL1 = new MMM_ModelRenderer(this, 46, 25);
+		DrowaL1 = new ModelRenderer(this, 46, 25);
 		DrowaL1.mirror = true;
 		DrowaL1.addBox(-1F, -0.0F, -2F, 3, 2, 4, psize-0.1F);
 		DrowaL1.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedLeftLeg.addChild(DrowaL1);
 
-		DrowaR2 = new MMM_ModelRenderer(this, 46, 25);
+		DrowaR2 = new ModelRenderer(this, 46, 25);
 		DrowaR2.addBox(-3F, -0.8f, -2F, 3, 2, 4, psize);
 	//	DrowaR2.setPreRotationPointLM(-1.5F, 7.5F-f1, 0.0F);
 	//	DrowaR2.parentModel=Skirt;
 		Skirt.addChild(DrowaR2);
 
-		DrowaL2 = new MMM_ModelRenderer(this, 46, 25);
+		DrowaL2 = new ModelRenderer(this, 46, 25);
 		DrowaL2.mirror = true;
 		DrowaL2.addBox(0F, -0.8F, -2F, 3, 2, 4, psize);
 	//	DrowaL2.setPreRotationPointLM(1.5F, 7.5F-f1, 0.0F);
 	//	DrowaL2.parentModel=Skirt;
 		Skirt.addChild(DrowaL2);
 
-		bipedRightArm = new MMM_ModelRenderer(this, 48, 0);
+		bipedRightArm = new ModelRenderer(this, 48, 0);
 		bipedRightArm.addBox(-2F, -1F, -1F, 2, 8, 2, psize-Scale);
 		bipedRightArm.setRotationPoint(-2.1F, 1.5F + 2*Scale, 0F);
 		bipedRightArm.addChild(Arms[0]);
 
-		bipedLeftArm = new MMM_ModelRenderer(this, 56, 0);
+		bipedLeftArm = new ModelRenderer(this, 56, 0);
 		bipedLeftArm.addBox(0.0F, -1F, -1F, 2, 8, 2, psize-Scale);
 		bipedLeftArm.setRotationPoint(2.1F, 1.5F + 2*Scale, 0F);
 		bipedLeftArm.addChild(Arms[1]);
 
 	//	Skirt.isHidden=true;
 
-		eyeR = new MMM_ModelRenderer(this, 32, 19);
+		eyeR = new ModelRenderer(this, 32, 19);
 		eyeR.addPlate(-4.0f+Scale/2f, -4.9F-Scale/2f, -4.001F, 4, 4, 0, psize-Scale/2f);
 		eyeR.setRotationPoint(0.0F, 0.0F, Scale/2f);
 		bipedHead.addChild(eyeR);
-		eyeL = new MMM_ModelRenderer(this, 42, 19);
+		eyeL = new ModelRenderer(this, 42, 19);
 		eyeL.addPlate(0.0F-Scale/2f, -4.9F-Scale/2f, -4.001F, 4, 4, 0, psize-Scale/2f);
 		eyeL.setRotationPoint(0.0F, 0.0F, Scale/2f);
 		bipedHead.addChild(eyeL);
 
-		Glass = new MMM_ModelRenderer_EX(this, 24, 0,0.47F,0.47F,1.0F);
+		Glass = new ModelRendererEX(this, 24, 0,0.47F,0.47F,1.0F);
 		Glass.addPlate(-8.0F, -4.0F, 0F, 16, 8, 0, psize-Scale);
 		Glass.setRotationPoint(0.0F, -4.5F + 2.0F*Scale, -4.0F);
 	//	Glass.parentModel=bipedHead;
 		bipedHead.addChild(Glass);
 
-		Prim = new MMM_ModelRenderer(this, 4, 0);
+		Prim = new ModelRenderer(this, 4, 0);
 		Prim.addPlate(-2F, -7.3F, -3.5F, 4, 1, 0, psize-Scale/2);
 	//	Prim.setPreRotationPointLM(0.0F, -0.0F + Scale, 0.0F);
 	//	Prim.parentModel = bipedHead;
 		bipedHead.addChild(Prim);
 
-		Tail = new MMM_ModelRenderer(this, 46, 19);
+		Tail = new ModelRenderer(this, 46, 19);
 	//	Tail.addBox(-1F, -6.5F, 3.5F, 2, 2, 2,psize+0.1F);
 	//	Tail.setRotationPoint(0F, 0.0F, 0F);
 		Tail.addBox(-1F, -1F, -1F, 2, 2, 2,psize+0.1F);
@@ -197,14 +201,14 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 	//	Tail.parentModel = bipedHead;
 		bipedHead.addChild(Tail);
 
-		Tail2 = new MMM_ModelRenderer(this, 46, 15);
+		Tail2 = new ModelRenderer(this, 46, 15);
 		Tail2.addBox(0F, 1F, 0F, 2, 7, 2,psize);
 	//	Tail2.setRotationPoint(-1F, -6.0F, 4.7F);
 		Tail2.setRotationPoint(-0F, 0F, 0F);
 		bipedHead.addChild(Tail2);
 		Tail2.isHidden=true;
 
-		Tail3 = new MMM_ModelRenderer(this, 54, 15);
+		Tail3 = new ModelRenderer(this, 54, 15);
 		Tail3.addBox(0F, 0F, -1F, 0, 8, 2,psize+0.0001F);
 	//	Tail3.setRotationPoint(-0.5F, -6.8F, 4.0F);
 		Tail3.setRotationPoint(-0.5F, 0F, 0F);
@@ -212,7 +216,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Tail.addChild(Tail3);
 		setRotationDeg(Tail3,0F,0F,0F);
 
-		Tail4 = new MMM_ModelRenderer(this, 54, 16);
+		Tail4 = new ModelRenderer(this, 54, 16);
 		Tail4.addPlate(-1F, 0F, 0F, 2, 8, 0,psize);
 	//	Tail4.setRotationPoint(-1.0F, -6.8F, 4.5F);
 		Tail4.setRotationPoint(-0F, 0F, -0.5F);
@@ -220,7 +224,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Tail.addChild(Tail4);
 		setRotationDeg(Tail4,0F,0F,0F);
 
-		Tail5 = new MMM_ModelRenderer(this, 54, 15);
+		Tail5 = new ModelRenderer(this, 54, 15);
 		Tail5.addBox(0F, 0F, -1F, 0, 8, 2,psize+0.0001F);
 	//	Tail5.setRotationPoint(0.5F, -6.8F, 4.0F);
 		Tail5.setRotationPoint(0.5F, 0F, 0F);
@@ -228,7 +232,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Tail.addChild(Tail5);
 		setRotationDeg(Tail5,0F,0F,0F);
 
-		Tail6 = new MMM_ModelRenderer(this, 54, 16);
+		Tail6 = new ModelRenderer(this, 54, 16);
 		Tail6.mirror=true;
 		Tail6.addPlate(-1F, 0F, 0F, 2, 8, 0,psize);
 	//	Tail6.setRotationPoint(-1.0F, -6.8F, 5.5F);
@@ -237,7 +241,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Tail.addChild(Tail6);
 		setRotationDeg(Tail6,0F,0F,0F);
 
-		Ahoge = new MMM_ModelRenderer(this, 0, 5);
+		Ahoge = new ModelRenderer(this, 0, 5);
 	//	Ahoge.addBox(0F, 0F, 0F, 0, 3, 4,psize+0.0001F);
 		Ahoge.addPlate(0F, -3f, 0F, 4, 3, 0,psize+0.0001F);
 	//	Ahoge.setRotationPointLM(0F, -6.8F+Scale, -3.8F+Scale);
@@ -245,7 +249,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 	//	Ahoge.setPreRotationPointLM(0F, 0.0F+f1+5.0F*Scale, 0.1F);
 		bipedHead.addChild(Ahoge);
 
-		mainFrame = new MMM_ModelRenderer(this, 0, 0);
+		mainFrame = new ModelRenderer(this, 0, 0);
 		mainFrame.setRotationPoint(0F, 8F+pyoffset, 0F);
 		mainFrame.addChild(bipedHead);
 		mainFrame.addChild(bipedBody);
@@ -255,7 +259,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		mainFrame.addChild(bipedLeftLeg);
 		mainFrame.addChild(Skirt);
 
-		Skirt21 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt21 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt21.addPlate(-1.6F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt21.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt21.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -263,7 +267,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt21);
 		setRotatePriorityYZX(Skirt21);
 
-		Skirt22 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt22 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt22.addPlate(-1.6F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt22.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt22.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -271,7 +275,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt22);
 		setRotatePriorityYZX(Skirt22);
 
-		Skirt23 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt23 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt23.addPlate(0F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt23.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt23.setPreRotationPointLM(0F,2F-f1,0F);
@@ -279,7 +283,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt23);
 		setRotatePriorityYZX(Skirt23);
 
-		Skirt24 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt24 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt24.addPlate(0F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt24.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt24.setPreRotationPointLM(0F,2F-f1,0F);
@@ -287,7 +291,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt24);
 		setRotatePriorityYZX(Skirt24);
 
-		Skirt25 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt25 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt25.addPlate(0F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt25.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt25.setPreRotationPointLM(0F,2F-f1,0F);
@@ -295,7 +299,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt25);
 		setRotatePriorityYZX(Skirt25);
 
-		Skirt26 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt26 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt26.addPlate(0F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt26.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt26.setPreRotationPointLM(0F,2F-f1,0F);
@@ -303,7 +307,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt26);
 		setRotatePriorityYZX(Skirt26);
 
-		Skirt27 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt27 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt27.addPlate(-1.6F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt27.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt27.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -311,7 +315,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt27);
 		setRotatePriorityYZX(Skirt27);
 
-		Skirt28 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt28 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt28.addPlate(-1.6F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt28.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt28.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -319,7 +323,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt28);
 		setRotatePriorityYZX(Skirt28);
 
-		Skirt29 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt29 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt29.addPlate(-1.6F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt29.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt29.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -327,7 +331,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt29);
 		setRotatePriorityYZX(Skirt29);
 
-		Skirt210 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt210 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt210.addPlate(-1.6F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt210.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt210.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -335,7 +339,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt210);
 		setRotatePriorityYZX(Skirt210);
 
-		Skirt211 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt211 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt211.addPlate(0F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt211.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt211.setPreRotationPointLM(0F,2F-f1,0F);
@@ -343,7 +347,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt211);
 		setRotatePriorityYZX(Skirt211);
 
-		Skirt212 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt212 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt212.addPlate(0F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt212.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt212.setPreRotationPointLM(0F,2F-f1,0F);
@@ -351,7 +355,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt212);
 		setRotatePriorityYZX(Skirt212);
 
-		Skirt213 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt213 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt213.addPlate(0F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt213.setRotationPoint(0F, 2.0F-8f, 0F);
 	//	Skirt213.setPreRotationPointLM(0F,2F-f1,0F);
@@ -359,7 +363,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt213);
 		setRotatePriorityYZX(Skirt213);
 
-		Skirt214 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt214 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt214.addPlate(0F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt214.setRotationPoint(0F, 2.0F-8f, 0F);
 	///	Skirt214.setPreRotationPointLM(0F,2F-f1,0F);
@@ -367,7 +371,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt214);
 		setRotatePriorityYZX(Skirt214);
 
-		Skirt215 = new MMM_ModelRenderer_EX(this, 0, 32, 0.22F, 0.22F, 1.0F);
+		Skirt215 = new ModelRendererEX(this, 0, 32, 0.22F, 0.22F, 1.0F);
 		Skirt215.addPlate(-1.6F+14F, -12F, 0F, 30, 12, 0,psize);
 		Skirt215.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt215.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -375,7 +379,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt215);
 		setRotatePriorityYZX(Skirt215);
 
-		Skirt216 = new MMM_ModelRenderer_EX(this, 0, 44, 0.22F, 0.22F, 1.0F);
+		Skirt216 = new ModelRendererEX(this, 0, 44, 0.22F, 0.22F, 1.0F);
 		Skirt216.addPlate(-1.6F+14F, 0F, 0F, 30, 12, 0,psize);
 		Skirt216.setRotationPoint(0F, 2.5F-8f, 0F);
 	//	Skirt216.setPreRotationPointLM(0F,2.5F-f1,0F);
@@ -383,7 +387,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Skirt216);
 		setRotatePriorityYZX(Skirt216);
 
-		Band1 = new MMM_ModelRenderer_EX(this, 0, 56,0.9F,0.35F,0.9F);
+		Band1 = new ModelRendererEX(this, 0, 56,0.9F,0.35F,0.9F);
 		Band1.addBox(-3F, 0F, -2F, 6, 4, 4,psize);
 		Band1.setRotationPoint(0F, -3.5F, 0F);
 	//	Band1.setPreRotationPointLM(0F,4.7F-f1,0F);
@@ -391,7 +395,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		Skirt.addChild(Band1);
 	//	Band1.parentModel=Skirt;
 
-		EarL1 = new MMM_ModelRenderer_EX(this, 0, 16,0.25F,0.25F,1.0F);
+		EarL1 = new ModelRendererEX(this, 0, 16,0.25F,0.25F,1.0F);
 		EarL1.addPlate(0F, 0F, 0F, 16, 16, 0,psize);
 	//	EarL1.setRotationPointLM(0F, 0F+f1, 0F);
 		EarL1.setRotationPoint(3.0F-Scale,-6.5F,-0.4F);
@@ -400,7 +404,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarL1);
 		setRotatePriorityYZX(EarL1);
 
-		EarL2 = new MMM_ModelRenderer_EX(this, 0, 16,0.25F,0.25F,1.0F);
+		EarL2 = new ModelRendererEX(this, 0, 16,0.25F,0.25F,1.0F);
 		EarL2.mirror=true;
 		EarL2.addPlate(-16F, 0F, 0F, 16, 16, 0,psize);
 	//	EarL2.setRotationPointLM(0F, 0F+f1, 0F);
@@ -410,7 +414,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarL2);
 		setRotatePriorityYZX(EarL2);
 
-		EarR1 = new MMM_ModelRenderer_EX(this, 0, 16,0.25F,0.25F,1.0F);
+		EarR1 = new ModelRendererEX(this, 0, 16,0.25F,0.25F,1.0F);
 		EarR1.addPlate(0F, 0F, 0F, 16, 16, 0,psize);
 	//	EarR1.setRotationPointLM(0F, 0F+f1, 0F);
 		EarR1.setRotationPoint(-(3.0F-Scale),-6.5F,-0.4F);
@@ -419,7 +423,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarR1);
 		setRotatePriorityYZX(EarR1);
 
-		EarR2 = new MMM_ModelRenderer_EX(this, 0, 16,0.25F,0.25F,1.0F);
+		EarR2 = new ModelRendererEX(this, 0, 16,0.25F,0.25F,1.0F);
 		EarR2.mirror=true;
 		EarR2.addPlate(-16F, 0F, 0F, 16, 16, 0,psize);
 	//	EarR2.setRotationPointLM(0F, 0F+f1, 0F);
@@ -429,7 +433,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarR2);
 		setRotatePriorityYZX(EarR2);
 
-		EarLi1 = new MMM_ModelRenderer_EX(this, 16, 16,0.2F,0.2F,1.0F);
+		EarLi1 = new ModelRendererEX(this, 16, 16,0.2F,0.2F,1.0F);
 		EarLi1.addPlate(0F, 0F, 0F, 16, 16, 0,psize);
 	//	EarLi1.setRotationPointLM(0F, 0F+f1, 0F);
 		EarLi1.setRotationPoint(3.0F-Scale,-6.5F,-0.5F);
@@ -438,7 +442,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarLi1);
 		setRotatePriorityYZX(EarLi1);
 
-		EarLi2 = new MMM_ModelRenderer_EX(this, 16, 16,0.2F,0.2F,1.0F);
+		EarLi2 = new ModelRendererEX(this, 16, 16,0.2F,0.2F,1.0F);
 		EarLi2.mirror=true;
 		EarLi2.addPlate(-16F, 0F, 0F, 16, 16, 0,psize);
 	//	EarLi2.setRotationPointLM(0F, 0F+f1, 0F);
@@ -448,7 +452,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarLi2);
 		setRotatePriorityYZX(EarLi2);
 
-		EarRi1 = new MMM_ModelRenderer_EX(this, 16, 16,0.2F,0.2F,1.0F);
+		EarRi1 = new ModelRendererEX(this, 16, 16,0.2F,0.2F,1.0F);
 		EarRi1.addPlate(0F, 0F, 0F, 16, 16, 0,psize);
 	//	EarRi1.setRotationPointLM(0F, 0F+f1, 0F);
 		EarRi1.setRotationPoint(-(3.0F-Scale),-6.5F,-0.5F);
@@ -457,7 +461,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarRi1);
 		setRotatePriorityYZX(EarRi1);
 
-		EarRi2 = new MMM_ModelRenderer_EX(this, 16, 16,0.2F,0.2F,1.0F);
+		EarRi2 = new ModelRendererEX(this, 16, 16,0.2F,0.2F,1.0F);
 		EarRi2.mirror=true;
 		EarRi2.addPlate(-16F, 0F, 0F, 16, 16, 0,psize);
 	//	EarRi2.setRotationPointLM(0F, 0F+f1, 0F);
@@ -467,38 +471,38 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 		bipedHead.addChild(EarRi2);
 		setRotatePriorityYZX(EarRi2);
 
-		Shippo1 = new MMM_ModelRenderer(this, 60, 16);
+		Shippo1 = new ModelRenderer(this, 60, 16);
 		Shippo1.addBox(-0.5F, 0F, -0.5F, 1, 2, 1);
 		Shippo1.setRotationPoint(0F, 3.2F+Scale, 2F-Scale);
 		setRotationDeg(Shippo1, 125F, 0F, 0F);
 	//	Shippo1.parentModel=bipedBody;
 		bipedBody.addChild(Shippo1);
 
-		Shippo2 = new MMM_ModelRenderer(this, 60, 18);
+		Shippo2 = new ModelRenderer(this, 60, 18);
 		Shippo2.addBox(-0.5F, 0F, -0.5F, 1, 2, 1);
 		Shippo2.setRotationPoint(0F, 1.7F, 0F);
 		setRotationDeg(Shippo2, 20F, 0F, 0F);
 		Shippo1.addChild(Shippo2);
 
-		Shippo3 = new MMM_ModelRenderer(this, 60, 20);
+		Shippo3 = new ModelRenderer(this, 60, 20);
 		Shippo3.addBox(-0.5F, 0F, -0.5F, 1, 2, 1);
 		Shippo3.setRotationPoint(0F, 1.7F, 0F);
 		setRotationDeg(Shippo3, 10F, 0F, 0F);
 		Shippo2.addChild(Shippo3);
 
-		Shippo4 = new MMM_ModelRenderer(this, 60, 22);
+		Shippo4 = new ModelRenderer(this, 60, 22);
 		Shippo4.addBox(-0.5F, 0F, -0.5F, 1, 2, 1);
 		Shippo4.setRotationPoint(0F, 1.8F, 0F);
 		setRotationDeg(Shippo4, 5F, 0F, 0F);
 		Shippo3.addChild(Shippo4);
 
-		Shippo5 = new MMM_ModelRenderer(this, 60, 24);
+		Shippo5 = new ModelRenderer(this, 60, 24);
 		Shippo5.addBox(-0.5F, 0F, -0.5F, 1, 2, 1);
 		Shippo5.setRotationPoint(0F, 1.8F, 0F);
 		setRotationDeg(Shippo5, -5F, 0F, 0F);
 		Shippo4.addChild(Shippo5);
 
-		Shippo6 = new MMM_ModelRenderer(this, 60, 27);
+		Shippo6 = new ModelRenderer(this, 60, 27);
 		Shippo6.addBox(-0.5F, 0F, -0.5F, 1, 1, 1);
 		Shippo6.setRotationPoint(0F, 1.7F, 0F);
 		setRotationDeg(Shippo6, -15F, 0F, 0F);
@@ -524,12 +528,12 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 
 	}
 
-	public void render(MMM_IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7, boolean var8)
+	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7, boolean var8)
 	{
 		super.render( var1,  var2,  var3,  var4,  var5,  var6,  var7,  var8);
 	}
 
-	public void setLivingAnimations(MMM_IModelCaps var1, float var2, float var3, float var4)
+	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4)
 	{
 		super.setLivingAnimations( var1,  var2,  var3,  var4);
 
@@ -538,12 +542,12 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 //		System.out.println(String.format(" living : %s",var1.getClass().getSimpleName()));
 
 	//	LMM_EntityLittleMaid maid = null;
-		if(var1 instanceof LMM_EntityCaps)
-		{
+//		if(var1 instanceof LMM_EntityCaps)
+//		{
 		//	maid = (LMM_EntityLittleMaid)var1.getCapsValue(this.caps_Entity);
 		//	pink.showModel=(maid.isLookSuger());
 			pink.showModel=(Boolean)var1.getCapsValue(this.caps_isLookSuger);
-		}
+//		}
 		if( 0.0F > mh_sin(f3 * 0.05F) + mh_sin(f3 * 0.13F) + mh_sin(f3 * 0.7F) + 2.55F) {
 			eyeR.showModel = eyeL.showModel = true;
 		} else {
@@ -567,7 +571,7 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 
 	}
 
-	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6, MMM_IModelCaps var7)
+	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6, IModelCaps var7)
 	{
 		super.setRotationAngles(var1,  var2,  var3,  var4,  var5,  var6, var7);
 		float t;
@@ -579,12 +583,12 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
 //		System.out.println(String.format(" rotation : %s",var7.getClass().getSimpleName()));
 
 	//	LMM_EntityLittleMaid maid = null;
-		if(var7 instanceof LMM_EntityCaps)
-		{
+//		if(var7 instanceof LMM_EntityCaps)
+//		{
 		//	maid = (LMM_EntityLittleMaid)var7.getCapsValue(this.caps_Entity);
-			if((Boolean)var7.getCapsValue(this.caps_isLookSuger))
-				t*=2f;
-		}
+		if((Boolean)var7.getCapsValue(this.caps_isLookSuger))
+			t*=2f;
+//		}
 
 //		boolean isLookSuger=(Boolean)var7.getCapsValue(this.caps_isLookSuger);
 
@@ -725,18 +729,18 @@ public class ModelLittleMaid_ChibiNeko extends MMM_ModelLittleMaid_Archetype {
         }
 	}
 
-	private void setRotatePriorityYZX(MMM_ModelRenderer model){
+	private void setRotatePriorityYZX(ModelRenderer model){
 		model.rotatePriority=model.RotXZY;
 	}
 
-	private void setRotation(MMM_ModelRenderer model, float x, float y, float z)
+	private void setRotation(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX=x;
 		model.rotateAngleY=y;
 		model.rotateAngleZ=z;
 	}
 
-	private void setRotationDeg(MMM_ModelRenderer model, float x, float y, float z)
+	private void setRotationDeg(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX=x*(float)Math.PI/180F;
 		model.rotateAngleY=y*(float)Math.PI/180F;

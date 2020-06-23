@@ -1,16 +1,20 @@
-package net.minecraft.src;
+package yamanta;
 
-import org.lwjgl.opengl.GL11;
+import firis.lmmm.api.caps.IModelCaps;
+import firis.lmmm.api.renderer.ModelRenderer;
+import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
+import net.minecraft.util.math.MathHelper;
+import yamanta.modelappend.ModelRendererEX;
 
-public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
+public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 
-	public MMM_ModelRenderer eyeR;
-	public MMM_ModelRenderer eyeL;
-	public MMM_ModelRenderer Ahoge;
-	public MMM_ModelRenderer overHear;
-	public MMM_ModelRenderer_EX Glass;
-	public MMM_ModelRenderer_EX specialModel[];
-	public MMM_ModelRenderer pink;
+	public ModelRenderer eyeR;
+	public ModelRenderer eyeL;
+	public ModelRenderer Ahoge;
+	public ModelRenderer overHear;
+	public ModelRendererEX Glass;
+	public ModelRendererEX specialModel[];
+	public ModelRenderer pink;
 
 	private int IdOffset=0;
 
@@ -46,46 +50,46 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 
 		this.initBasicParts(psize,pyoffset);
 
-		Glass = new MMM_ModelRenderer_EX(this, 24, 0,0.5F,0.5F,1.0F);
+		Glass = new ModelRendererEX(this, 24, 0,0.5F,0.5F,1.0F);
 		Glass.addPlate(-8.0F, -4.0F, 0F, 16, 8, 0, psize);
 		Glass.setRotationPoint(0.0F, -4.0F, -4.0F);
 		bipedHead.addChild(Glass);
 
-		overHear = new MMM_ModelRenderer(this,0,16);
+		overHear = new ModelRenderer(this,0,16);
 		overHear.addBox(-4f, -9f, -4f, 8, 9, 8, psize+0.3f);
 		overHear.setRotationPoint(0f, 1f, 0f);
 		bipedHead.addChild(overHear);
 
-		SideTailL = new MMM_ModelRenderer(this, 46, 26);
+		SideTailL = new ModelRenderer(this, 46, 26);
 		SideTailL.addBox(4.7F, -6F, 1F, 1, 1, 1,psize+0.2F);
 		SideTailL.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(SideTailL);
 		SideTailL.isHidden=true;
 
-		SideTailR = new MMM_ModelRenderer(this, 50, 26);
+		SideTailR = new ModelRenderer(this, 50, 26);
 		SideTailR.addBox(-5.7F, -6F, 1F, 1, 1, 1,psize+0.2F);
 		SideTailR.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(SideTailR);
 		SideTailR.isHidden=true;
 
-		Tail = new MMM_ModelRenderer(this, 46, 19);
+		Tail = new ModelRenderer(this, 46, 19);
 		Tail.addBox(-1F, -7F, 4.8F, 2, 2, 2,psize+0.1F);
 		Tail.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(Tail);
 
-		Ahoge = new MMM_ModelRenderer(this, 0, 1);
+		Ahoge = new ModelRenderer(this, 0, 1);
 		Ahoge.addBox(0F, 0F, 0F, 0, 3, 4,psize);
 		Ahoge.setRotationPoint(0F, -7F, -4F);
 		bipedHead.addChild(Ahoge);
 
-		pink = new MMM_ModelRenderer(this,0,1);
+		pink = new ModelRenderer(this,0,1);
 		pink.addPlate(1.6F, 0F, 0F, 2, 1, 0, psize-0.1f);
 		pink.addPlate(-3.6F, 0F, 0F, 2, 1, 0, psize-0.1f);
 		pink.setRotationPoint(0f, -1.9f, -4.3f);
 		bipedHead.addChild(pink);
 
-//		loadModel=new MMM_ModelRenderer_EX[4];
-//		loadModel[0]=new MMM_ModelRenderer_EX(this);
+//		loadModel=new ModelRenderer_EX[4];
+//		loadModel[0]=new ModelRenderer_EX(this);
 
 		this.initSpecialModel(psize);
 
@@ -93,99 +97,99 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 
 	private void initBasicParts(float psize, float pyoffset){
 
-		Arms = new MMM_ModelRenderer[2];
-		Arms[0] = new MMM_ModelRenderer(this, 0, 0);
+		Arms = new ModelRenderer[2];
+		Arms[0] = new ModelRenderer(this, 0, 0);
 		Arms[0].setRotationPoint(-1F, 5F, -1F);
-		Arms[1] = new MMM_ModelRenderer(this, 0, 0);
+		Arms[1] = new ModelRenderer(this, 0, 0);
 		Arms[1].setRotationPoint(1F, 5F, -1F);
 		Arms[1].isInvertX = true;
 		HeadMount.setRotationPoint(0F, -3F, 0F);
 
-		bipedHead = new MMM_ModelRenderer(this, 0, 0);
+		bipedHead = new ModelRenderer(this, 0, 0);
 		bipedHead.addBox(-4F, -8F, -4F, 8, 8, 8, psize);
 		bipedHead.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(HeadMount);
 	//	bipedHead.rotatePriority=1;
 
-		eyeR = new MMM_ModelRenderer(this, 32, 19);
+		eyeR = new ModelRenderer(this, 32, 19);
 		eyeR.addPlate(-4.0F, -5.0F, -4.001F, 4, 4, 0, psize);
 		eyeR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		eyeL = new MMM_ModelRenderer(this, 42, 19);
+		eyeL = new ModelRenderer(this, 42, 19);
 		eyeL.addPlate(0.0F, -5.0F, -4.001F, 4, 4, 0, psize);
 		eyeL.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedHead.addChild(eyeR);
 		bipedHead.addChild(eyeL);
 
-		bipedHeadwear = new MMM_ModelRenderer(this, 24, 0);
+		bipedHeadwear = new ModelRenderer(this, 24, 0);
 		bipedHeadwear.addBox(-4F, 0F, 1F, 8, 4, 3, psize);
 		bipedHeadwear.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(bipedHeadwear);
 		bipedHeadwear.isHidden=true;
 
-		bipedBody = new MMM_ModelRenderer(this, 32, 8);
+		bipedBody = new ModelRenderer(this, 32, 8);
 		bipedBody.addBox(-3F, 0F, -2F, 6, 7, 4, psize);
 		bipedBody.setRotationPoint(0F, 0F, 0F);
 
-		bipedRightArm = new MMM_ModelRenderer(this, 48, 0);
+		bipedRightArm = new ModelRenderer(this, 48, 0);
 		bipedRightArm.addBox(-2.0F, -1F, -1F, 2, 8, 2, psize);
 		bipedRightArm.setRotationPoint(-3.0F, 1.5F, 0F);
 		bipedRightArm.addChild(Arms[0]);
 
-		bipedLeftArm = new MMM_ModelRenderer(this, 56, 0);
+		bipedLeftArm = new ModelRenderer(this, 56, 0);
 		bipedLeftArm.addBox(0.0F, -1F, -1F, 2, 8, 2, psize);
 		bipedLeftArm.setRotationPoint(3.0F, 1.5F, 0F);
 		bipedLeftArm.addChild(Arms[1]);
 
-		bipedRightLeg = new MMM_ModelRenderer(this, 32, 19);
+		bipedRightLeg = new ModelRenderer(this, 32, 19);
 		bipedRightLeg.addBox(-2F, 0F, -2F, 3, 9, 4, psize);
 		bipedRightLeg.setRotationPoint(-1F, 7F, 0F);
 
-		bipedLeftLeg = new MMM_ModelRenderer(this, 32, 19);
+		bipedLeftLeg = new ModelRenderer(this, 32, 19);
 		bipedLeftLeg.mirror = true;
 		bipedLeftLeg.addBox(-1F, 0F, -2F, 3, 9, 4, psize);
 		bipedLeftLeg.setRotationPoint(1F, 7F, 0F);
 
-		Skirt = new MMM_ModelRenderer(this, 0, 16);
+		Skirt = new ModelRenderer(this, 0, 16);
 		Skirt.addBox(-4F, -2F, -4F, 0, 0, 0, psize);
 		Skirt.setRotationPoint(0F, 7F, 0F);
 
-		ChignonR = new MMM_ModelRenderer(this, 24, 18);
+		ChignonR = new ModelRenderer(this, 24, 18);
 		ChignonR.addBox(-5F, -7F, 0.2F, 1, 3, 3, psize);
 		ChignonR.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(ChignonR);
 		ChignonR.isHidden=true;
 
-		ChignonL = new MMM_ModelRenderer(this, 24, 18);
+		ChignonL = new ModelRenderer(this, 24, 18);
 		ChignonL.addBox(4F, -7F, 0.2F, 1, 3, 3, psize);
 		ChignonL.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(ChignonL);
 		ChignonL.isHidden=true;
 
-		ChignonB = new MMM_ModelRenderer(this, 52, 10);
+		ChignonB = new ModelRenderer(this, 52, 10);
 		ChignonB.addBox(-2F, -7.2F, 4F, 4, 4, 2, psize);
 		ChignonB.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(ChignonB);
 
-		Tail = new MMM_ModelRenderer(this, 46, 20);
+		Tail = new ModelRenderer(this, 46, 20);
 		Tail.addBox(-1.5F, -6.8F, 4F, 3, 9, 3, psize);
 		Tail.setRotationPoint(0F, 0F, 0F);
 		bipedHead.addChild(Tail);
 		Tail.isHidden=true;
 
-        SideTailR = new MMM_ModelRenderer(this, 58, 21);
+        SideTailR = new ModelRenderer(this, 58, 21);
         SideTailR.addBox(-5.5F, -6.8F, 0.9F, 1, 8, 2, psize);
         SideTailR.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedHead.addChild(SideTailR);
 		SideTailR.isHidden=true;
 
-        SideTailL = new MMM_ModelRenderer(this, 58, 21);
+        SideTailL = new ModelRenderer(this, 58, 21);
         SideTailL.mirror = true;
         SideTailL.addBox(4.5F, -6.8F, 0.9F, 1, 8, 2, psize);
         SideTailL.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedHead.addChild(SideTailL);
 		SideTailL.isHidden=true;
 
-		mainFrame = new MMM_ModelRenderer(this, 0, 0);
+		mainFrame = new ModelRenderer(this, 0, 0);
 		mainFrame.setRotationPoint(0F, 0F + pyoffset, 0F);
 		mainFrame.addChild(bipedHead);
 		mainFrame.addChild(bipedBody);
@@ -196,12 +200,12 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 		mainFrame.addChild(Skirt);
 	}
 
-	public void render(MMM_IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7, boolean var8)
+	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7, boolean var8)
 	{
 		super.render( var1,  var2,  var3,  var4,  var5,  var6,  var7,  var8);
 	}
 
-	public void setLivingAnimations(MMM_IModelCaps var1, float var2, float var3, float var4)
+	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4)
 	{
 		super.setLivingAnimations( var1,  var2,  var3,  var4);
 
@@ -214,11 +218,11 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 		}
 		IdOffset=(int)this.entityIdFactor;
 
-		if(var1 instanceof LMM_EntityCaps)
-			pink.showModel=(Boolean)var1.getCapsValue(this.caps_isLookSuger);
+//		if(var1 instanceof LMM_EntityCaps)
+		pink.showModel=(Boolean)var1.getCapsValue(this.caps_isLookSuger);
 	}
 
-	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6, MMM_IModelCaps var7)
+	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6, IModelCaps var7)
 	{
 		super.setRotationAngles(var1,  var2,  var3,  var4,  var5,  var6, var7);
 
@@ -246,20 +250,20 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 
 	}
 
-	private void setRotation(MMM_ModelRenderer model, float x, float y, float z)
+	private void setRotation(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX=x;
 		model.rotateAngleY=y;
 		model.rotateAngleZ=z;
 	}
-	private void setRotationDeg(MMM_ModelRenderer model, float x, float y, float z)
+	private void setRotationDeg(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX=x*(float)Math.PI/180F;
 		model.rotateAngleY=y*(float)Math.PI/180F;
 		model.rotateAngleZ=z*(float)Math.PI/180F;
 	}
 
-	private void setRotatePriorityYZX(MMM_ModelRenderer model){
+	private void setRotatePriorityYZX(ModelRenderer model){
 		model.rotatePriority=model.RotXZY;
 	}
 
@@ -278,11 +282,11 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 	 {
 		 return 0.5F;
 	 }
-	@Override
-	public void equippedHeadItemPosition()
-    {
-        GL11.glTranslatef(0.0F, 0.95F, 0.0F);
-    }
+//	@Override
+//	public void equippedHeadItemPosition()
+//    {
+//        GL11.glTranslatef(0.0F, 0.95F, 0.0F);
+//    }
 
 	private void initSpecialModel(float psize){
 		float v[][]={
@@ -1181,10 +1185,10 @@ public class ModelLittleMaid_DressYukari extends MMM_ModelLittleMaid_Archetype {
 
 
 
-				specialModel=new MMM_ModelRenderer_EX[4];
-//				loadModel[0] = new MMM_ModelRenderer_EX(this);
+				specialModel=new ModelRendererEX[4];
+//				loadModel[0] = new ModelRenderer_EX(this);
 				for(int i=0;i<specialModel.length;i++)
-					specialModel[i] = new MMM_ModelRenderer_EX(this);
+					specialModel[i] = new ModelRendererEX(this);
 
 				for(int i=0;i<v.length;i++){
 					float expandX = v[i][0]*psize*0.2f;
