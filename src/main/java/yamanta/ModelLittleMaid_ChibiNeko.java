@@ -7,7 +7,7 @@ import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
 import net.minecraft.util.math.MathHelper;
-import yamanta.modelappend.ModelRendererEX;
+import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 

@@ -1,4 +1,4 @@
-package yamanta.modelappend;
+package yamanta.lib;
 
 import org.lwjgl.opengl.GL11;
 

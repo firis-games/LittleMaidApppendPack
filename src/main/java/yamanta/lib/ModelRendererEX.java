@@ -1,4 +1,4 @@
-package yamanta.modelappend;
+package yamanta.lib;
 
 import firis.lmmm.api.model.ModelBase;
 import firis.lmmm.api.renderer.ModelRenderer;

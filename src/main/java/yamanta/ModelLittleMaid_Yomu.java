@@ -9,7 +9,7 @@ import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
 import net.blacklab.lmr.entity.littlemaid.EntityLittleMaid;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.MathHelper;
-import yamanta.modelappend.ModelRendererEX;
+import yamanta.lib.ModelRendererEX;
 
 
 public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
