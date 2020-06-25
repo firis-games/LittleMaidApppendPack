@@ -1,12 +1,8 @@
 package yamanta;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
-import net.minecraft.util.math.MathHelper;
 import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
@@ -59,7 +55,7 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 	public ModelRenderer DrowaR2;
 	public ModelRenderer DrowaL2;
 	public ModelRendererEX pink;
-	private Map sizeMap;
+//	private Map sizeMap;
 
 	private static final float Scale = 0.4F;
 
@@ -80,13 +76,13 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 		pyoffset -= 8F;
 		super.initModel(psize, pyoffset);
 
-		sizeMap = new HashMap();
+//		sizeMap = new HashMap();
 
 		textureHeight = 64;
 		textureWidth = 64;
 
-		heldItemLeft = 0;
-		heldItemRight = 0;
+//		heldItemLeft = 0;
+//		heldItemRight = 0;
 		isSneak = false;
 		isWait = false;
 		aimedBow = false;
@@ -523,11 +519,12 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 
 	}
 
-	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
-			boolean var8) {
-		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
-	}
+//	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
+//			boolean var8) {
+//		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
+//	}
 
+	@Override
 	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4) {
 		super.setLivingAnimations(var1, var2, var3, var4);
 
@@ -541,7 +538,7 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 		// {
 		// maid = (LMM_EntityLittleMaid)var1.getCapsValue(this.caps_Entity);
 		// pink.showModel=(maid.isLookSuger());
-		pink.showModel = (Boolean) var1.getCapsValue(this.caps_isLookSuger);
+		pink.showModel = (Boolean) var1.getCapsValue(IModelCaps.caps_isLookSuger);
 		// }
 		if (0.0F > mh_sin(f3 * 0.05F) + mh_sin(f3 * 0.13F) + mh_sin(f3 * 0.7F) + 2.55F) {
 			eyeR.showModel = eyeL.showModel = true;
@@ -570,6 +567,7 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 
 	}
 
+	@Override
 	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6,
 			IModelCaps var7) {
 		super.setRotationAngles(var1, var2, var3, var4, var5, var6, var7);
@@ -586,16 +584,16 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 		// if(var7 instanceof LMM_EntityCaps)
 		// {
 		// maid = (LMM_EntityLittleMaid)var7.getCapsValue(this.caps_Entity);
-		if ((Boolean) var7.getCapsValue(this.caps_isLookSuger))
+		if ((Boolean) var7.getCapsValue(IModelCaps.caps_isLookSuger))
 			t *= 2f;
 		// }
 
 		// boolean isLookSuger=(Boolean)var7.getCapsValue(this.caps_isLookSuger);
 
 		Ahoge.rotateAngleY = (float) Math.PI / 2f
-				+ MathHelper.cos(t * 0.2F + MathHelper.cos(t * 0.05F + this.entityIdFactor) * 1.0F) * 0.2F;
+				+ mh_cos(t * 0.2F + mh_cos(t * 0.05F + this.entityIdFactor) * 1.0F) * 0.2F;
 		Ahoge.rotateAngleX = 0F;
-		Ahoge.rotateAngleX += MathHelper.cos(t * 0.02F + MathHelper.cos(t * 0.05F + this.entityIdFactor) * 1.0F)
+		Ahoge.rotateAngleX += mh_cos(t * 0.02F + mh_cos(t * 0.05F + this.entityIdFactor) * 1.0F)
 				* 0.0015F;
 		Ahoge.rotateAngleZ = 0.02f;
 		bipedHead.rotationPointZ = 0F;
@@ -613,38 +611,38 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 		else
 			Tail2.rotateAngleX = Tail3.rotateAngleX = Tail4.rotateAngleX = Tail5.rotateAngleX = Tail6.rotateAngleX = -bipedHead.rotateAngleX;// +bipedBody.rotateAngleX);
 		Shippo1.rotationPointZ = 2F - Scale;
-		Shippo1.rotateAngleX = 125F / 180F * (float) Math.PI + 0.025F * MathHelper.sin(-t * 0.6F + this.entityIdFactor);
+		Shippo1.rotateAngleX = 125F / 180F * (float) Math.PI + 0.025F * mh_sin(-t * 0.6F + this.entityIdFactor);
 		Shippo2.rotateAngleX = 20F / 180F * (float) Math.PI;
 		Shippo3.rotateAngleX = 10F / 180F * (float) Math.PI;
 		Shippo4.rotateAngleX = 5F / 180F * (float) Math.PI;
 		Shippo5.rotateAngleX = -5F / 180F * (float) Math.PI;
 		Shippo6.rotateAngleX = -15F / 180F * (float) Math.PI;
-		Shippo1.rotateAngleY = 0.2F * MathHelper.sin(t * 0.3F + this.entityIdFactor);
-		Shippo2.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.3F + 0.000005F + this.entityIdFactor);
-		Shippo3.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.3F + 0.00001F + this.entityIdFactor);
-		Shippo4.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.3F + 0.000015F + this.entityIdFactor);
-		Shippo5.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.3F + 0.00002F + this.entityIdFactor);
-		Shippo6.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.3F + 0.000025F + this.entityIdFactor);
+		Shippo1.rotateAngleY = 0.2F * mh_sin(t * 0.3F + this.entityIdFactor);
+		Shippo2.rotateAngleZ = 0.2F * mh_sin(-t * 0.3F + 0.000005F + this.entityIdFactor);
+		Shippo3.rotateAngleZ = 0.2F * mh_sin(-t * 0.3F + 0.00001F + this.entityIdFactor);
+		Shippo4.rotateAngleZ = 0.2F * mh_sin(-t * 0.3F + 0.000015F + this.entityIdFactor);
+		Shippo5.rotateAngleZ = 0.2F * mh_sin(-t * 0.3F + 0.00002F + this.entityIdFactor);
+		Shippo6.rotateAngleZ = 0.2F * mh_sin(-t * 0.3F + 0.000025F + this.entityIdFactor);
 
-		if (onGround > -9990F && !aimedBow) {
-			bipedRightArm.rotationPointZ = MathHelper.sin(bipedBody.rotateAngleY) * 4F;
-			bipedRightArm.rotationPointX = -MathHelper.cos(bipedBody.rotateAngleY) * 4F + 1.0F + 2.0F * Scale;
-			bipedLeftArm.rotationPointZ = -MathHelper.sin(bipedBody.rotateAngleY) * 4F;
-			bipedLeftArm.rotationPointX = MathHelper.cos(bipedBody.rotateAngleY) * 4F - 1.0F - 2.0F * Scale;
-			bipedRightArm.rotateAngleY += bipedBody.rotateAngleY;
-			bipedLeftArm.rotateAngleY += bipedBody.rotateAngleY;
-			bipedLeftArm.rotateAngleX += bipedBody.rotateAngleY;
-		}
+//		if (onGround > -9990F && !aimedBow) {
+//			bipedRightArm.rotationPointZ = mh_sin(bipedBody.rotateAngleY) * 4F;
+//			bipedRightArm.rotationPointX = -mh_cos(bipedBody.rotateAngleY) * 4F + 1.0F + 2.0F * Scale;
+//			bipedLeftArm.rotationPointZ = -mh_sin(bipedBody.rotateAngleY) * 4F;
+//			bipedLeftArm.rotationPointX = mh_cos(bipedBody.rotateAngleY) * 4F - 1.0F - 2.0F * Scale;
+//			bipedRightArm.rotateAngleY += bipedBody.rotateAngleY;
+//			bipedLeftArm.rotateAngleY += bipedBody.rotateAngleY;
+//			bipedLeftArm.rotateAngleX += bipedBody.rotateAngleY;
+//		}
 
 		if (isRiding) {
 			Shippo1.rotateAngleX = 125F / 180F * (float) Math.PI
-					+ 0.025F * MathHelper.sin(-t * 0.4F + this.entityIdFactor);
-			Shippo1.rotateAngleY = 0.2F * MathHelper.sin(t * 0.2F + this.entityIdFactor);
-			Shippo2.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0002F + this.entityIdFactor);
-			Shippo3.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0004F + this.entityIdFactor);
-			Shippo4.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0006F + this.entityIdFactor);
-			Shippo5.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0008F + this.entityIdFactor);
-			Shippo6.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.001F + this.entityIdFactor);
+					+ 0.025F * mh_sin(-t * 0.4F + this.entityIdFactor);
+			Shippo1.rotateAngleY = 0.2F * mh_sin(t * 0.2F + this.entityIdFactor);
+			Shippo2.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0002F + this.entityIdFactor);
+			Shippo3.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0004F + this.entityIdFactor);
+			Shippo4.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0006F + this.entityIdFactor);
+			Shippo5.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0008F + this.entityIdFactor);
+			Shippo6.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.001F + this.entityIdFactor);
 		}
 		if (aimedBow) {
 			eyeL.showModel = true;
@@ -656,13 +654,13 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 		if (isSneak) {
 			Shippo1.rotationPointZ = 2F - Scale + 2f;
 			Shippo1.rotateAngleX = 125F / 180F * (float) Math.PI
-					+ 0.025F * MathHelper.sin(-t * 0.4F + this.entityIdFactor);
-			Shippo1.rotateAngleY = 0.2F * MathHelper.sin(t * 0.2F + this.entityIdFactor);
-			Shippo2.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0002F + this.entityIdFactor);
-			Shippo3.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0004F + this.entityIdFactor);
-			Shippo4.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0006F + this.entityIdFactor);
-			Shippo5.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.0008F + this.entityIdFactor);
-			Shippo6.rotateAngleZ = 0.2F * MathHelper.sin(-t * 0.2F + 0.001F + this.entityIdFactor);
+					+ 0.025F * mh_sin(-t * 0.4F + this.entityIdFactor);
+			Shippo1.rotateAngleY = 0.2F * mh_sin(t * 0.2F + this.entityIdFactor);
+			Shippo2.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0002F + this.entityIdFactor);
+			Shippo3.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0004F + this.entityIdFactor);
+			Shippo4.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0006F + this.entityIdFactor);
+			Shippo5.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.0008F + this.entityIdFactor);
+			Shippo6.rotateAngleZ = 0.2F * mh_sin(-t * 0.2F + 0.001F + this.entityIdFactor);
 
 			bipedBody.rotateAngleX = 0.5F;
 			bipedBody.rotationPointZ = 0.0F;
@@ -673,8 +671,8 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 			bipedLeftArm.rotateAngleX += 0.4F;
 			bipedRightArm.rotationPointY = 10F + 6 * Scale;
 			bipedLeftArm.rotationPointY = 10F + 6 * Scale;
-			bipedRightArm.rotationPointZ = MathHelper.sin(bipedBody.rotateAngleY) * 4F + 4 * Scale;
-			bipedLeftArm.rotationPointZ = -MathHelper.sin(bipedBody.rotateAngleY) * 4F + 4 * Scale;
+			bipedRightArm.rotationPointZ = mh_sin(bipedBody.rotateAngleY) * 4F + 4 * Scale;
+			bipedLeftArm.rotationPointZ = -mh_sin(bipedBody.rotateAngleY) * 4F + 4 * Scale;
 			bipedRightLeg.rotationPointZ = 2.5F;
 			bipedLeftLeg.rotationPointZ = 2.5F;
 			bipedRightLeg.rotationPointY = 14.0F + Scale;
@@ -727,25 +725,26 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 	}
 
 	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = model.RotXZY;
+		model.rotatePriority = ModelRenderer.RotXZY;
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
 
 	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x * (float) Math.PI / 180F;
-		model.rotateAngleY = y * (float) Math.PI / 180F;
-		model.rotateAngleZ = z * (float) Math.PI / 180F;
+//		model.rotateAngleX = x * (float) Math.PI / 180F;
+//		model.rotateAngleY = y * (float) Math.PI / 180F;
+//		model.rotateAngleZ = z * (float) Math.PI / 180F;
+		model.setRotateAngleDeg(x, y, z);
 	}
 
 	private float convertDegtoRad(float deg) {
 		return deg / 180F * (float) Math.PI;
 	}
-
+	
 	@Override
 	public float getHeight() {
 		return 1.25F;
@@ -755,4 +754,5 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 	public float getWidth() {
 		return 0.4F;
 	}
+	
 }

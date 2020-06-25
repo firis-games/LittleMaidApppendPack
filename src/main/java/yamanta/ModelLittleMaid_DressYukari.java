@@ -3,7 +3,6 @@ package yamanta;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
-import net.minecraft.util.math.MathHelper;
 import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
@@ -37,8 +36,8 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 		textureHeight = 64;
 		textureWidth = 64;
 
-		heldItemLeft = 0;
-		heldItemRight = 0;
+//		heldItemLeft = 0;
+//		heldItemRight = 0;
 		isSneak = false;
 		isWait = false;
 		aimedBow = false;
@@ -197,11 +196,12 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(Skirt);
 	}
 
-	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
-			boolean var8) {
-		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
-	}
+//	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
+//			boolean var8) {
+//		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
+//	}
 
+	@Override
 	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4) {
 		super.setLivingAnimations(var1, var2, var3, var4);
 
@@ -215,16 +215,17 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 		IdOffset = (int) this.entityIdFactor;
 
 		// if(var1 instanceof LMM_EntityCaps)
-		pink.showModel = (Boolean) var1.getCapsValue(this.caps_isLookSuger);
+		pink.showModel = (Boolean) var1.getCapsValue(IModelCaps.caps_isLookSuger);
 	}
 
+	@Override
 	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6,
 			IModelCaps var7) {
 		super.setRotationAngles(var1, var2, var3, var4, var5, var6, var7);
 
 		float t = var3;
 
-		Ahoge.rotateAngleY = MathHelper.cos(t * 0.2F + MathHelper.cos(t * 0.05F + IdOffset) * 1.0F) * 0.2F;
+		Ahoge.rotateAngleY = mh_cos(t * 0.2F + mh_cos(t * 0.05F + IdOffset) * 1.0F) * 0.2F;
 		Ahoge.rotateAngleX = 2.9F;
 
 		Skirt.rotateAngleX = 0f;
@@ -246,21 +247,21 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
 
-	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x * (float) Math.PI / 180F;
-		model.rotateAngleY = y * (float) Math.PI / 180F;
-		model.rotateAngleZ = z * (float) Math.PI / 180F;
-	}
+//	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x * (float) Math.PI / 180F;
+//		model.rotateAngleY = y * (float) Math.PI / 180F;
+//		model.rotateAngleZ = z * (float) Math.PI / 180F;
+//	}
 
-	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = model.RotXZY;
-	}
+//	private void setRotatePriorityYZX(ModelRenderer model) {
+//		model.rotatePriority = ModelRenderer.RotXZY;
+//	}
 
 	private float convertDegtoRad(float deg) {
 		return deg / 180F * (float) Math.PI;

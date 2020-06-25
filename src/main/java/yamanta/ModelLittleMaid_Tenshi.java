@@ -3,7 +3,6 @@ package yamanta;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
-import net.minecraft.item.ItemStack;
 import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
@@ -103,13 +102,13 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 	public ModelRenderer PlateL5;
 	public ModelRenderer PlateL6;
 
-	private float x1;
-	private float y1;
-	private float z1;
+//	private float x1;
+//	private float y1;
+//	private float z1;
 
-	private float[] pastX = new float[10];
-	private float[] pastY = new float[10];
-	private float[] pastZ = new float[10];
+//	private float[] pastX = new float[10];
+//	private float[] pastY = new float[10];
+//	private float[] pastZ = new float[10];
 
 	public ModelLittleMaid_Tenshi() {
 		this(0.0F);
@@ -130,8 +129,8 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 		textureHeight = 64;
 		textureWidth = 64;
 
-		heldItemLeft = 0;
-		heldItemRight = 0;
+//		heldItemLeft = 0;
+//		heldItemRight = 0;
 		isSneak = false;
 		isWait = false;
 		aimedBow = false;
@@ -874,11 +873,12 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(Skirt);
 	}
 
-	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
-			boolean var8) {
-		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
-	}
+//	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
+//			boolean var8) {
+//		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
+//	}
 
+	@Override
 	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4) {
 		super.setLivingAnimations(var1, var2, var3, var4);
 
@@ -893,7 +893,7 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 		// 3);
 		// if(itemstack != null)
 		// System.out.println(String.format("%s", itemstack.getItemName()));
-		if ((ItemStack) var1.getCapsValue(this.caps_currentArmor, 3) != null) {
+		if (var1.getCapsValue(IModelCaps.caps_currentArmor, 3) != null) {
 			Hat1.isHidden = Hat2.isHidden = Hat3.isHidden = Hat4.isHidden = Hat5.isHidden = Hat6.isHidden = Hat7.isHidden = Hat8.isHidden = Hat9.isHidden = Hat10.isHidden = Hat11.isHidden = Hat12.isHidden = Hat13.isHidden = Hat14.isHidden = false;
 			Peach1.isHidden = false;
 			Line1.isHidden = Line2.isHidden = Line3.isHidden = Line4.isHidden = false;
@@ -906,6 +906,7 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 		}
 	}
 
+	@Override
 	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6,
 			IModelCaps var7) {
 		super.setRotationAngles(var1, var2, var3, var4, var5, var6, var7);
@@ -928,11 +929,11 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
 
 	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x * (float) Math.PI / 180F;
@@ -940,14 +941,14 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaid_Archetype {
 		model.rotateAngleZ = z * (float) Math.PI / 180F;
 	}
 
-	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
-		dist.rotateAngleX = from.rotateAngleX;
-		dist.rotateAngleY = from.rotateAngleY;
-		dist.rotateAngleZ = from.rotateAngleZ;
-	}
+//	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
+//		dist.rotateAngleX = from.rotateAngleX;
+//		dist.rotateAngleY = from.rotateAngleY;
+//		dist.rotateAngleZ = from.rotateAngleZ;
+//	}
 
 	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = model.RotXZY;
+		model.rotatePriority = ModelRenderer.RotXZY;
 	}
 
 	private float convertDegtoRad(float deg) {

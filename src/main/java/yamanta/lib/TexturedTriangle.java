@@ -11,16 +11,21 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * yamanta式三角ポリゴン描画用テクスチャ設定
+ *
+ */
 public class TexturedTriangle extends TexturedQuad {
-	public PositionTextureVertex vertexPositions[];
-	public int nVertices;
+	
+//	public PositionTextureVertex vertexPositions[];
+//	public int nVertices;
 	public float vn[][];
 	private boolean invertNormal;
 	public int red;
 	public int green;
 	public int blue;
 	public int alpha;
-	private boolean setColor;
+//	private boolean setColor;
 
 	public TexturedTriangle(PositionTextureVertex par1ArrayOfPositionTextureVertex[]) {
 		super(par1ArrayOfPositionTextureVertex);
@@ -39,13 +44,13 @@ public class TexturedTriangle extends TexturedQuad {
 			green = (int) (255 * RGBA[1]);
 			blue = (int) (255 * RGBA[2]);
 			alpha = (int) (255 * RGBA[3] * 0.5f);
-			setColor = true;
+//			setColor = true;
 		} else {
 			red = 255;
 			green = 255;
 			blue = 255;
 			alpha = 255;
-			setColor = false;
+//			setColor = false;
 		}
 		// System.out.println(String.format("RGBA (%.4f, %.4f, %.4f,
 		// %.4f)",RGBA[0],RGBA[1],RGBA[2],RGBA[3]));
@@ -99,12 +104,12 @@ public class TexturedTriangle extends TexturedQuad {
 			 */
 		}
 		// par1Tessellator.startDrawingQuads();
-		int color = GL11.glGetInteger(GL11.GL_CURRENT_COLOR);
-		boolean matEnable;
-		if ((color & 0x000000ff) == (int) (255 * 0.4f))
-			matEnable = false;
-		else
-			matEnable = true;
+//		int color = GL11.glGetInteger(GL11.GL_CURRENT_COLOR);
+//		boolean matEnable;
+//		if ((color & 0x000000ff) == (int) (255 * 0.4f))
+//			matEnable = false;
+//		else
+//			matEnable = true;
 		// System.out.println(String.format("glColor : %x ",color));
 		GL11.glShadeModel(GL11.GL_SMOOTH);
 		int mode = 6;

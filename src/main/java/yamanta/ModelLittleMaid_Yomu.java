@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import firis.lmmm.api.caps.IModelCaps;
+import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
-import net.blacklab.lmr.entity.littlemaid.EntityLittleMaid;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.math.MathHelper;
 import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
@@ -94,14 +92,14 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 	private float x1;
 	private float y1;
 	private float z1;
-	private float IdOffset;
-	private List IdList;
-	private List AngleYList;
-	private List YawOffsetList;
-	private List positionList;
-	private List childPositionList;
+//	private float IdOffset;
+	private List<Integer> IdList;
+	private List<Float> AngleYList;
+	private List<Float> YawOffsetList;
+//	private List positionList;
+//	private List childPositionList;
 	private float AY;
-	private float prevAY;
+//	private float prevAY;
 
 	private float[] pastX = new float[10];
 	private float[] pastY = new float[10];
@@ -126,8 +124,8 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 		textureHeight = 64;
 		textureWidth = 64;
 
-		heldItemLeft = 0;
-		heldItemRight = 0;
+//		heldItemLeft = 0;
+//		heldItemRight = 0;
 		isSneak = false;
 		isWait = false;
 		aimedBow = false;
@@ -136,11 +134,11 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 
 		this.initBasicParts(psize, pyoffset);
 
-		IdList = new ArrayList();
-		AngleYList = new ArrayList();
-		YawOffsetList = new ArrayList();
-		positionList = new ArrayList();
-		childPositionList = new ArrayList();
+		IdList = new ArrayList<>();
+		AngleYList = new ArrayList<>();
+		YawOffsetList = new ArrayList<>();
+//		positionList = new ArrayList();
+//		childPositionList = new ArrayList();
 
 		Neck = new ModelRenderer(this, 16, 5);
 		Neck.addBox(-1.0F, -1.0F, 1.0F, 2, 1, 2, psize);
@@ -491,7 +489,7 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 		x1 = 0F;
 		y1 = 0F;
 		z1 = 0F;
-		IdOffset = 0F;
+//		IdOffset = 0F;
 		AY = 0F;
 
 		/*
@@ -721,11 +719,12 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(Skirt);
 	}
 
-	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
-			boolean var8) {
-		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
-	}
+//	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
+//			boolean var8) {
+//		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
+//	}
 
+	@Override
 	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4) {
 		super.setLivingAnimations(var1, var2, var3, var4);
 
@@ -737,83 +736,88 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 			eyeR.showModel = eyeL.showModel = false;
 		}
 
-		EntityLiving entityliving = (EntityLiving) var1.getCapsValue(this.caps_Entity, (Object[]) null);
-		if (entityliving == null)
-			return;
-		if (entityliving instanceof EntityLittleMaid) {
-			EntityLittleMaid entitylittlemaid = (EntityLittleMaid) entityliving;
+//		EntityLiving entityliving = (EntityLiving) var1.getCapsValue(IModelCaps.caps_Entity, (Object[]) null);
+		boolean openInv = ModelCapsHelper.getCapsValueBoolean(var1, IModelCaps.caps_isOpenInv);
+		float renderYawOffset = ModelCapsHelper.getCapsValueFloat(var1, IModelCaps.caps_renderYawOffset);
+//		if (entityliving == null)
+//			return;
+//		if (entityliving instanceof EntityLittleMaid) {
+//			EntityLittleMaid entitylittlemaid = (EntityLittleMaid) entityliving;
 
-			if (entitylittlemaid.isOpenInventory()) {
-				int IdIndex;
-				try {
-					IdIndex = IdList.indexOf((int) this.entityIdFactor);
-					HanreiC.rotateAngleY = (Float) AngleYList.get(IdIndex);
-					AY = (Float) YawOffsetList.get(IdIndex);
-				} catch (Exception exception) {
-					IdList.add((int) this.entityIdFactor);
-					AngleYList.add(HanreiC.rotateAngleY);
-					YawOffsetList.add(entitylittlemaid.renderYawOffset);// renderYawOffset);
-					IdIndex = IdList.indexOf((int) this.entityIdFactor);
-					AY = entitylittlemaid.renderYawOffset;// renderYawOffset;
-				} finally {
-					Hanrei4.rotateAngleY = Hanrei5.rotateAngleY = HanreiC.rotateAngleY;
-				}
-				// HanreiC.rotateAngleY=0F;
-				// Hanrei4.rotateAngleY=Hanrei5.rotateAngleY=HanreiC.rotateAngleY;
-
-				/*
-				 * mod_littleMaidMob.Debug(String.format("ID:%d, %s", new Object[] {
-				 * Integer.valueOf(entitylittlemaid.entityId), entitylittlemaid.textureName }));
-				 * mod_littleMaidMob.Debug(String.
-				 * format("YawOffset:%f, prevYawOffset:%f, rotationYaw:%.0f, rotationYawHead:%.0f, AngleY:%f"
-				 * , new Object[] { entitylittlemaid.renderYawOffset,
-				 * entitylittlemaid.prevRenderYawOffset,entitylittlemaid.rotationYaw,
-				 * entitylittlemaid.rotationYawHead,HanreiC.preRotateAngleY }));
-				 */
-			} else if (!entitylittlemaid.isOpenInventory()) {
-				int IdIndex;
-				try {
-					IdIndex = IdList.indexOf((int) this.entityIdFactor);
-					HanreiC.rotateAngleY = (Float) AngleYList.get(IdIndex);
-					AY = (Float) YawOffsetList.get(IdIndex);
-				} catch (Exception exception) {
-					IdList.add((int) this.entityIdFactor);
-					AngleYList.add(HanreiC.rotateAngleY);
-					// YawOffsetList.add(entitylittlemaid.renderYawOffset);
-					YawOffsetList.add(entitylittlemaid.renderYawOffset);
-					IdIndex = IdList.indexOf((int) this.entityIdFactor);
-					AY = entitylittlemaid.renderYawOffset;// renderYawOffset;
-				}
-
-				float r1 = (entitylittlemaid.renderYawOffset) / 180F * (float) Math.PI;
-
-				float move = r1 - AY / 180F * (float) Math.PI;
-				/*
-				 * if(entitylittlemaid.entityId==180){ mod_littleMaidMob.Debug(String.
-				 * format("setLivingAnimation... YawOffset:%.2f, prevYawOffset:%.2f, move:%.2f AngleY:%.2f, AY:%.2f, prevAY:%.2f"
-				 * , new Object[] { entitylittlemaid.renderYawOffset,
-				 * entitylittlemaid.prevRenderYawOffset,move,HanreiC.preRotateAngleY,AY,prevAY
-				 * })); }
-				 */
-				HanreiC.rotateAngleY -= move * 0.45F;
-				while (HanreiC.rotateAngleY > (float) Math.PI)
-					HanreiC.rotateAngleY -= 2f * (float) Math.PI;
-				while (HanreiC.rotateAngleY < -(float) Math.PI)
-					HanreiC.rotateAngleY += 2f * (float) Math.PI;
-				if (HanreiC.rotateAngleY != 0F) {
-					// if(Math.abs(HanreiC.rotateAngleY/200F)>0.01F)
-					// HanreiC.rotateAngleY-=Math.copySign(0.01F,HanreiC.rotateAngleY);
-					// else
-					// HanreiC.rotateAngleY-=HanreiC.rotateAngleY/200F;
-					HanreiC.rotateAngleY *= 0.99f;
-				}
+//		if (entitylittlemaid.isOpenInventory()) {
+		if (openInv) {
+			int IdIndex;
+			try {
+				IdIndex = IdList.indexOf((int) this.entityIdFactor);
+				HanreiC.rotateAngleY = (Float) AngleYList.get(IdIndex);
+				AY = (Float) YawOffsetList.get(IdIndex);
+			} catch (Exception exception) {
+				IdList.add((int) this.entityIdFactor);
+				AngleYList.add(HanreiC.rotateAngleY);
+				YawOffsetList.add(renderYawOffset);// renderYawOffset);
+				IdIndex = IdList.indexOf((int) this.entityIdFactor);
+				AY = renderYawOffset;// renderYawOffset;
+			} finally {
 				Hanrei4.rotateAngleY = Hanrei5.rotateAngleY = HanreiC.rotateAngleY;
-				AngleYList.set(IdIndex, HanreiC.rotateAngleY);
-				YawOffsetList.set(IdIndex, entitylittlemaid.renderYawOffset);
 			}
+			// HanreiC.rotateAngleY=0F;
+			// Hanrei4.rotateAngleY=Hanrei5.rotateAngleY=HanreiC.rotateAngleY;
+
+			/*
+			 * mod_littleMaidMob.Debug(String.format("ID:%d, %s", new Object[] {
+			 * Integer.valueOf(entitylittlemaid.entityId), entitylittlemaid.textureName }));
+			 * mod_littleMaidMob.Debug(String.
+			 * format("YawOffset:%f, prevYawOffset:%f, rotationYaw:%.0f, rotationYawHead:%.0f, AngleY:%f"
+			 * , new Object[] { entitylittlemaid.renderYawOffset,
+			 * entitylittlemaid.prevRenderYawOffset,entitylittlemaid.rotationYaw,
+			 * entitylittlemaid.rotationYawHead,HanreiC.preRotateAngleY }));
+			 */
+//		} else if (!entitylittlemaid.isOpenInventory()) {
+		} else {
+			int IdIndex;
+			try {
+				IdIndex = IdList.indexOf((int) this.entityIdFactor);
+				HanreiC.rotateAngleY = (Float) AngleYList.get(IdIndex);
+				AY = (Float) YawOffsetList.get(IdIndex);
+			} catch (Exception exception) {
+				IdList.add((int) this.entityIdFactor);
+				AngleYList.add(HanreiC.rotateAngleY);
+				// YawOffsetList.add(entitylittlemaid.renderYawOffset);
+				YawOffsetList.add(renderYawOffset);
+				IdIndex = IdList.indexOf((int) this.entityIdFactor);
+				AY = renderYawOffset;// renderYawOffset;
+			}
+
+			float r1 = (renderYawOffset) / 180F * (float) Math.PI;
+
+			float move = r1 - AY / 180F * (float) Math.PI;
+			/*
+			 * if(entitylittlemaid.entityId==180){ mod_littleMaidMob.Debug(String.
+			 * format("setLivingAnimation... YawOffset:%.2f, prevYawOffset:%.2f, move:%.2f AngleY:%.2f, AY:%.2f, prevAY:%.2f"
+			 * , new Object[] { entitylittlemaid.renderYawOffset,
+			 * entitylittlemaid.prevRenderYawOffset,move,HanreiC.preRotateAngleY,AY,prevAY
+			 * })); }
+			 */
+			HanreiC.rotateAngleY -= move * 0.45F;
+			while (HanreiC.rotateAngleY > (float) Math.PI)
+				HanreiC.rotateAngleY -= 2f * (float) Math.PI;
+			while (HanreiC.rotateAngleY < -(float) Math.PI)
+				HanreiC.rotateAngleY += 2f * (float) Math.PI;
+			if (HanreiC.rotateAngleY != 0F) {
+				// if(Math.abs(HanreiC.rotateAngleY/200F)>0.01F)
+				// HanreiC.rotateAngleY-=Math.copySign(0.01F,HanreiC.rotateAngleY);
+				// else
+				// HanreiC.rotateAngleY-=HanreiC.rotateAngleY/200F;
+				HanreiC.rotateAngleY *= 0.99f;
+			}
+			Hanrei4.rotateAngleY = Hanrei5.rotateAngleY = HanreiC.rotateAngleY;
+			AngleYList.set(IdIndex, HanreiC.rotateAngleY);
+			YawOffsetList.set(IdIndex, renderYawOffset);
 		}
+//		}
 	}
 
+	@Override
 	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6,
 			IModelCaps var7) {
 		super.setRotationAngles(var1, var2, var3, var4, var5, var6, var7);
@@ -830,9 +834,9 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 		Hanrei5.rotationPointY = pastY[9] + 1.5F;
 		Hanrei5.rotationPointZ = pastZ[9] + 3.5F;
 
-		HanreiC.rotationPointX = x1 + MathHelper.cos((var3 + this.entityIdFactor / 10f + 0.01F * var5) * 0.11F) * 0.5F;
-		HanreiC.rotationPointZ = z1 + MathHelper.cos((var3 + this.entityIdFactor / 10f + 0.01F * var5) * 0.07F) * 0.5F;
-		HanreiC.rotationPointY = y1 + MathHelper.cos((var3 + this.entityIdFactor / 10f + 0.01F * var5) * 0.13F) * 0.5F;
+		HanreiC.rotationPointX = x1 + mh_cos((var3 + this.entityIdFactor / 10f + 0.01F * var5) * 0.11F) * 0.5F;
+		HanreiC.rotationPointZ = z1 + mh_cos((var3 + this.entityIdFactor / 10f + 0.01F * var5) * 0.07F) * 0.5F;
+		HanreiC.rotationPointY = y1 + mh_cos((var3 + this.entityIdFactor / 10f + 0.01F * var5) * 0.13F) * 0.5F;
 
 		Skirt.rotateAngleX = 0f;
 		Skirt.rotationPointZ = 0f;
@@ -850,11 +854,11 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
 
 	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x * (float) Math.PI / 180F;
@@ -862,14 +866,14 @@ public class ModelLittleMaid_Yomu extends ModelLittleMaid_Archetype {
 		model.rotateAngleZ = z * (float) Math.PI / 180F;
 	}
 
-	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
-		dist.rotateAngleX = from.rotateAngleX;
-		dist.rotateAngleY = from.rotateAngleY;
-		dist.rotateAngleZ = from.rotateAngleZ;
-	}
+//	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
+//		dist.rotateAngleX = from.rotateAngleX;
+//		dist.rotateAngleY = from.rotateAngleY;
+//		dist.rotateAngleZ = from.rotateAngleZ;
+//	}
 
 	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = model.RotXZY;
+		model.rotatePriority = ModelRenderer.RotXZY;
 	}
 
 	/*

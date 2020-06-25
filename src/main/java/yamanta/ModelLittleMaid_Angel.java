@@ -3,7 +3,6 @@ package yamanta;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
-import net.minecraft.util.math.MathHelper;
 import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
@@ -102,8 +101,8 @@ public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
 		textureHeight = 64;
 		textureWidth = 64;
 
-		heldItemLeft = 0;
-		heldItemRight = 0;
+//		heldItemLeft = 0;
+//		heldItemRight = 0;
 		isSneak = false;
 		isWait = false;
 		aimedBow = false;
@@ -720,11 +719,12 @@ public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(Skirt);
 	}
 
-	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
-			boolean var8) {
-		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
-	}
+//	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
+//			boolean var8) {
+//		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
+//	}
 
+	@Override
 	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4) {
 		super.setLivingAnimations(var1, var2, var3, var4);
 
@@ -745,6 +745,7 @@ public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
 
 	}
 
+	@Override
 	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6,
 			IModelCaps var7) {
 		super.setRotationAngles(var1, var2, var3, var4, var5, var6, var7);
@@ -757,9 +758,9 @@ public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
 
 		WingLOrigin.rotateAngleX = 0F;
 		WingROrigin.rotateAngleX = 0F;
-		WingLOrigin.rotateAngleY = MathHelper.cos(t * 0.5F + IdOffset) * 0.2F - 0.3F;
-		WingROrigin.rotateAngleY = MathHelper.cos(t * 0.5F + (float) Math.PI + IdOffset) * 0.2F + 0.3F;
-		Ahoge.rotateAngleY = MathHelper.cos(t * 0.2F + MathHelper.cos(t * 0.05F + IdOffset) * 1.0F) * 0.2F;
+		WingLOrigin.rotateAngleY = mh_cos(t * 0.5F + IdOffset) * 0.2F - 0.3F;
+		WingROrigin.rotateAngleY = mh_cos(t * 0.5F + (float) Math.PI + IdOffset) * 0.2F + 0.3F;
+		Ahoge.rotateAngleY = mh_cos(t * 0.2F + mh_cos(t * 0.05F + IdOffset) * 1.0F) * 0.2F;
 		Ahoge.rotateAngleX = 2.9F;
 
 		Tail2.rotateAngleX = -bipedHead.rotateAngleX;
@@ -802,13 +803,13 @@ public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
 	}
 
 	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = model.RotXZY;
+		model.rotatePriority = ModelRenderer.RotXZY;
 	}
 
 	private float convertDegtoRad(float deg) {
 		return deg / 180F * (float) Math.PI;
 	}
-
+	
 	@Override
 	public float getHeight() {
 		return 1.35F;
@@ -818,6 +819,7 @@ public class ModelLittleMaid_Angel extends ModelLittleMaid_Archetype {
 	public float getWidth() {
 		return 0.5F;
 	}
+
 	// @Override
 	// public void equippedHeadItemPosition()
 	// {

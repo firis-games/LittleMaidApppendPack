@@ -3,7 +3,12 @@ package yamanta.lib;
 import firis.lmmm.api.model.ModelBase;
 import firis.lmmm.api.renderer.ModelRenderer;
 
+/**
+ * yamanta式三角ポリゴンModelRenderer
+ *
+ */
 public class ModelRendererEX extends ModelRenderer {
+	
 	private int texOffsetX = 0;
 	private int texOffsetY = 0;
 

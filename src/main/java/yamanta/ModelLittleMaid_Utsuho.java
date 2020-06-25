@@ -3,7 +3,6 @@ package yamanta;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
 import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
-import net.minecraft.util.math.MathHelper;
 import yamanta.lib.ModelRendererEX;
 
 public class ModelLittleMaid_Utsuho extends ModelLittleMaid_Archetype {
@@ -99,8 +98,8 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaid_Archetype {
 		textureHeight = 64;
 		textureWidth = 64;
 
-		heldItemLeft = 0;
-		heldItemRight = 0;
+//		heldItemLeft = 0;
+//		heldItemRight = 0;
 		isSneak = false;
 		isWait = false;
 		aimedBow = false;
@@ -620,11 +619,12 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(Skirt);
 	}
 
-	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
-			boolean var8) {
-		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
-	}
+//	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
+//			boolean var8) {
+//		super.render(var1, var2, var3, var4, var5, var6, var7, var8);
+//	}
 
+	@Override
 	public void setLivingAnimations(IModelCaps var1, float var2, float var3, float var4) {
 		super.setLivingAnimations(var1, var2, var3, var4);
 
@@ -638,6 +638,7 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaid_Archetype {
 		IdOffset = this.entityIdFactor;
 	}
 
+	@Override
 	public void setRotationAngles(float var1, float var2, float var3, float var4, float var5, float var6,
 			IModelCaps var7) {
 		super.setRotationAngles(var1, var2, var3, var4, var5, var6, var7);
@@ -648,31 +649,31 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaid_Archetype {
 
 		WingLOrigin.rotateAngleX = 0.2F;
 		WingROrigin.rotateAngleX = 0.2F;
-		WingLOrigin.rotateAngleY = MathHelper.cos(t * 0.5F + IdOffset) * 0.2F - 0.3F;// MathHelper.cos(f2 * 0.6662F) *
+		WingLOrigin.rotateAngleY = mh_cos(t * 0.5F + IdOffset) * 0.2F - 0.3F;// mh_cos(f2 * 0.6662F) *
 																						// 10.0F * f1 * 0.5F;
-		WingROrigin.rotateAngleY = MathHelper.cos(t * 0.5F + (float) Math.PI + IdOffset) * 0.2F + 0.3F;// MathHelper.cos(f2
+		WingROrigin.rotateAngleY = mh_cos(t * 0.5F + (float) Math.PI + IdOffset) * 0.2F + 0.3F;// mh_cos(f2
 																										// * 0.6662F +
 																										// (float)Math.PI)
 																										// * 4.0F * f1 *
 																										// 0.5F;
-		Ahoge.rotateAngleY = MathHelper.cos(t * 0.2F + MathHelper.cos(t * 0.05F + IdOffset) * 1.0F) * 0.2F;
+		Ahoge.rotateAngleY = mh_cos(t * 0.2F + mh_cos(t * 0.05F + IdOffset) * 1.0F) * 0.2F;
 		Ahoge.rotateAngleX = 2.9F;
 
-		Circle1.rotationPointX = x1 + MathHelper.cos(t * 0.3F + IdOffset) * 3F;
-		Circle1.rotationPointZ = z1 + MathHelper.cos(t * 0.3F + 0.5F * (float) Math.PI + IdOffset) * 3F;
-		Circle1.rotationPointY = y1 + MathHelper.cos(t * 0.37F + IdOffset) * 1.5F;
+		Circle1.rotationPointX = x1 + mh_cos(t * 0.3F + IdOffset) * 3F;
+		Circle1.rotationPointZ = z1 + mh_cos(t * 0.3F + 0.5F * (float) Math.PI + IdOffset) * 3F;
+		Circle1.rotationPointY = y1 + mh_cos(t * 0.37F + IdOffset) * 1.5F;
 
-		Circle2.rotationPointX = x1 + MathHelper.cos(t * 0.3F + 2.5F + IdOffset) * 3F;
-		Circle2.rotationPointZ = z1 + MathHelper.cos(t * 0.3F + 2.5F + 0.5F * (float) Math.PI + IdOffset) * 3F;
-		Circle2.rotationPointY = y1 - MathHelper.cos(t * 0.37F + 2.5F + IdOffset) * 1.5F;
+		Circle2.rotationPointX = x1 + mh_cos(t * 0.3F + 2.5F + IdOffset) * 3F;
+		Circle2.rotationPointZ = z1 + mh_cos(t * 0.3F + 2.5F + 0.5F * (float) Math.PI + IdOffset) * 3F;
+		Circle2.rotationPointY = y1 - mh_cos(t * 0.37F + 2.5F + IdOffset) * 1.5F;
 
-		Circle1.rotationPointX = 1f + MathHelper.cos(t * 0.3F + IdOffset) * 3F;
-		Circle1.rotationPointZ = MathHelper.cos(t * 0.3F + 0.5F * (float) Math.PI + IdOffset) * 3F;
-		Circle1.rotationPointY = 6f + MathHelper.cos(t * 0.37F + IdOffset) * 1.5F;
+		Circle1.rotationPointX = 1f + mh_cos(t * 0.3F + IdOffset) * 3F;
+		Circle1.rotationPointZ = mh_cos(t * 0.3F + 0.5F * (float) Math.PI + IdOffset) * 3F;
+		Circle1.rotationPointY = 6f + mh_cos(t * 0.37F + IdOffset) * 1.5F;
 
-		Circle2.rotationPointX = 1f + MathHelper.cos(t * 0.3F + 2.5F + IdOffset) * 3F;
-		Circle2.rotationPointZ = MathHelper.cos(t * 0.3F + 2.5F + 0.5F * (float) Math.PI + IdOffset) * 3F;
-		Circle2.rotationPointY = 6f - MathHelper.cos(t * 0.37F + 2.5F + IdOffset) * 1.5F;
+		Circle2.rotationPointX = 1f + mh_cos(t * 0.3F + 2.5F + IdOffset) * 3F;
+		Circle2.rotationPointZ = mh_cos(t * 0.3F + 2.5F + 0.5F * (float) Math.PI + IdOffset) * 3F;
+		Circle2.rotationPointY = 6f - mh_cos(t * 0.37F + 2.5F + IdOffset) * 1.5F;
 
 		Skirt.rotateAngleX = 0f;
 
@@ -706,14 +707,14 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaid_Archetype {
 		cS12.rotateAngleZ = z * (float) Math.PI / 180F;
 	}
 
-	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
-		dist.rotateAngleX = from.rotateAngleX;
-		dist.rotateAngleY = from.rotateAngleY;
-		dist.rotateAngleZ = from.rotateAngleZ;
-	}
+//	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
+//		dist.rotateAngleX = from.rotateAngleX;
+//		dist.rotateAngleY = from.rotateAngleY;
+//		dist.rotateAngleZ = from.rotateAngleZ;
+//	}
 
 	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = model.RotXZY;
+		model.rotatePriority = ModelRenderer.RotXZY;
 	}
 
 	private float convertDegtoRad(float deg) {

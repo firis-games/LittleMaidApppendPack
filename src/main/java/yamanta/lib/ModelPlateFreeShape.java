@@ -5,7 +5,12 @@ import firis.lmmm.api.renderer.ModelRenderer;
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.renderer.Tessellator;
 
+/**
+ * yamanta式三角ポリゴンModelBox
+ *
+ */
 public class ModelPlateFreeShape extends ModelBox {
+	
 	private PositionTextureVertex vertexPositions[];
 	private TexturedTriangle triList[];
 
