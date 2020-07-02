@@ -518,6 +518,16 @@ public class ModelLittleMaid_ChibiNeko extends ModelLittleMaid_Archetype {
 		setRotationDeg(Skirt216, -62F, 67F, 47F);
 
 	}
+	
+	@Override
+	public void setDefaultPause(float limbSwing, float limbSwingAmount, float ageInTicks,
+			float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
+		
+		super.setDefaultPause(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
+		
+		mainFrame.setRotationPoint(0F, 0F, 0F);
+		mainFrame.setRotateAngleDegX(0);
+	}
 
 //	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
 //			boolean var8) {
