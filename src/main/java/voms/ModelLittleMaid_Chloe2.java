@@ -7,6 +7,7 @@ import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.model.motion.LMMotionSitdown;
 import firis.lmmm.api.renderer.ModelRenderer;
+import voms.lib.VomsHelper;
 
 /**
 * 多関節モデル
@@ -518,7 +519,7 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 			} else {
 				//中腰
 				bipedBody.rotateAngleX += 0.7F;
-				hipBody.rotateAngleX -= 0.1F + mh_sin(ageInTicks * 0.060F) * 0.03F;
+				hipBody.rotateAngleX -= 0.1F + VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.03F;
 				upperRightArm.rotateAngleX += 0.1F;
 				upperLeftArm.rotateAngleX += 0.1F;
 				upperRightLeg.rotateAngleY -= 0.07F;
@@ -530,8 +531,8 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 				mainFrame.rotationPointY += 0.4F;
 			}
 			//しゃがみ歩行
-			float f15 = mh_sin(limbSwing * 0.6767F); //wave1
-			float f16 = mh_cos(limbSwing * 0.6767F); //wave2
+			float f15 = VomsHelper.mh_sin(limbSwing * 0.6767F); //wave1
+			float f16 = VomsHelper.mh_cos(limbSwing * 0.6767F); //wave2
 			float f22 = f15 > f16 ? f15 : f16; //upper wave
 			float f35 = f15 < f16 ? f15 : f16; //lower wave
 			
@@ -547,13 +548,13 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 			
 			bipedBody.rotateAngleY -= f15 * 0.1F * limbSwingAmount;
 			hipBody.rotateAngleY += f15 * 0.1F * limbSwingAmount - bipedBody.rotateAngleY;
-			breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.060F) * 0.05F;
-			breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.060F) * 0.05F;
+			breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
+			breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
 			mainFrame.rotationPointY += f16 * f16 * 0.5F;
 		} else {
 			//通常歩行
-			float f15 = mh_sin(limbSwing * 0.5050F); //wave1
-			float f16 = mh_cos(limbSwing * 0.5050F); //wave2
+			float f15 = VomsHelper.mh_sin(limbSwing * 0.5050F); //wave1
+			float f16 = VomsHelper.mh_cos(limbSwing * 0.5050F); //wave2
 			float f22 = f15 > f16 ? f15 : f16; //upper wave
 			float f35 = f15 < f16 ? f15 : f16; //lower wave
 			
@@ -569,8 +570,8 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 			
 			bipedBody.rotateAngleY -= f15 * 0.2F * limbSwingAmount;
 			hipBody.rotateAngleY += f15 * 0.3F * limbSwingAmount - bipedBody.rotateAngleY;
-			breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.060F) * 0.05F;
-			breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - mh_sin(ageInTicks * 0.060F) * 0.05F;
+			breastR.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
+			breastL.rotateAngleX -= f16 * f16 * 0.18F * limbSwingAmount - VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
 			mainFrame.rotationPointY += f16 * f16 * 0.1F;
 		}
 		
@@ -591,30 +592,30 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		if ((onGroundR > -9990F || onGroundL > -9990F) && !aimedBow) {
 			// 腕振り
 			float f6, f7, f8;
-			f6 = mh_sin(mh_sqrt_float(onGroundR) * (float)Math.PI * 2.0F);
-			f7 = mh_sin(mh_sqrt_float(onGroundL) * (float)Math.PI * 2.0F);
+			f6 = VomsHelper.mh_sin(mh_sqrt_float(onGroundR) * (float)Math.PI * 2.0F);
+			f7 = VomsHelper.mh_sin(mh_sqrt_float(onGroundL) * (float)Math.PI * 2.0F);
 			bipedBody.rotateAngleY += (f6 - f7) * 0.2F;
 			upperRightArm.rotateAngleY += bipedBody.rotateAngleY;
 			upperLeftArm.rotateAngleY += bipedBody.rotateAngleY;
 			// R
 			if (onGroundR > 0F) {
 				f6 = 1.0F - onGroundR;
-				f7 = mh_sin((1.0F - f6 * f6 * f6 * f6) * (float)Math.PI);
-				f8 = mh_sin(onGroundR * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
+				f7 = VomsHelper.mh_sin((1.0F - f6 * f6 * f6 * f6) * (float)Math.PI);
+				f8 = VomsHelper.mh_sin(onGroundR * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
 				upperRightArm.rotateAngleX -= (double)f7 * 1.2D + (double)f8;
 				upperRightArm.rotateAngleY += bipedBody.rotateAngleY * 2.0F;
-				upperRightArm.rotateAngleZ += mh_sin(onGroundR * 3.141593F) * -0.4F;
+				upperRightArm.rotateAngleZ += VomsHelper.mh_sin(onGroundR * 3.141593F) * -0.4F;
 			} else {
 				upperRightArm.rotateAngleX += bipedBody.rotateAngleY;
 			}
 			// L
 			if (onGroundL > 0F) {
 				f6 = 1.0F - onGroundR;
-				f7 = mh_sin((1.0F - f6 * f6 * f6 * f6) * (float)Math.PI);
-				f8 = mh_sin(onGroundL * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
+				f7 = VomsHelper.mh_sin((1.0F - f6 * f6 * f6 * f6) * (float)Math.PI);
+				f8 = VomsHelper.mh_sin(onGroundL * (float)Math.PI) * -(bipedHead.rotateAngleX - 0.7F) * 0.75F;
 				upperLeftArm.rotateAngleX -= (double)f7 * 1.2D + (double)f8;
 				upperLeftArm.rotateAngleY += bipedBody.rotateAngleY * 2.0F;
-				upperLeftArm.rotateAngleZ += mh_sin(onGroundL * 3.141593F) * 0.4F;
+				upperLeftArm.rotateAngleZ += VomsHelper.mh_sin(onGroundL * 3.141593F) * 0.4F;
 			} else {
 				upperLeftArm.rotateAngleX += bipedBody.rotateAngleY;
 			}
@@ -622,12 +623,12 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		
 		if (isWait) {
 			// 待機状態 腕
-			upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.060F) * 0.05F - 0.5F;
+			upperRightArm.rotateAngleX += VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F - 0.5F;
 			upperRightArm.rotateAngleZ -= 0.3F;
 			Arms[0].rotateAngleZ -= 1.5F;
 			Arms[0].rotateAngleX -= 0.5F;
 			Arms[0].rotateAngleY += 1.5F;
-			upperLeftArm.rotateAngleX += mh_sin(ageInTicks * 0.060F) * 0.05F - 0.5F;
+			upperLeftArm.rotateAngleX += VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F - 0.5F;
 			upperLeftArm.rotateAngleZ += 0.3F;
 			Arms[1].rotateAngleZ += 1.5F;
 			Arms[1].rotateAngleX -= 0.5F;
@@ -637,8 +638,8 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		} else if (aimedBow) {
 			// 弓構え 腕
 			float onGround = 0.0F; //lmmm未使用変数
-			float f6 = mh_sin(onGround * 3.141593F);
-			float f7 = mh_sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
+			float f6 = VomsHelper.mh_sin(onGround * 3.141593F);
+			float f7 = VomsHelper.mh_sin((1.0F - (1.0F - onGround) * (1.0F - onGround)) * 3.141593F);
 			upperRightArm.rotateAngleZ = 0.0F;
 			upperLeftArm.rotateAngleZ = 0.0F;
 			upperRightArm.rotateAngleY = -(0.1F - f6 * 0.6F);
@@ -647,10 +648,10 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 			upperLeftArm.rotateAngleX = -1.470796F;
 			upperRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
 			upperLeftArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-			upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-			upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-			upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.060F) * 0.05F;
-			upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.060F) * 0.05F;
+			upperRightArm.rotateAngleZ += VomsHelper.mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperLeftArm.rotateAngleZ -= VomsHelper.mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperRightArm.rotateAngleX += VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
+			upperLeftArm.rotateAngleX -= VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
 			upperRightArm.rotateAngleX += bipedHead.rotateAngleX;
 			upperLeftArm.rotateAngleX += bipedHead.rotateAngleX;
 			upperRightArm.rotateAngleY += bipedHead.rotateAngleY;
@@ -661,10 +662,10 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 			upperLeftArm.rotateAngleZ -= 0.2F;
 			bipedRightArm.rotateAngleZ += 0.05F;
 			bipedLeftArm.rotateAngleZ -= 0.05F;
-			upperRightArm.rotateAngleZ += mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-			upperLeftArm.rotateAngleZ -= mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
-			upperRightArm.rotateAngleX += mh_sin(ageInTicks * 0.060F) * 0.05F;
-			upperLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.060F) * 0.05F;
+			upperRightArm.rotateAngleZ += VomsHelper.mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperLeftArm.rotateAngleZ -= VomsHelper.mh_cos(ageInTicks * 0.08F) * 0.03F + 0.05F;
+			upperRightArm.rotateAngleX += VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
+			upperLeftArm.rotateAngleX -= VomsHelper.mh_sin(ageInTicks * 0.060F) * 0.05F;
 		}
 		
 		//
@@ -672,12 +673,12 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		Arms[3].setRotateAngle(-0.78539816339744830961566084581988F - upperLeftArm.getRotateAngleX(), 0F, 0F);
 		
 		//脚部追従
-		float sinBody1X = mh_sin(bipedBody.rotateAngleX);
-		float cosBody1X = 1F - mh_cos(bipedBody.rotateAngleX);
-		float sinBody2X = mh_sin(bipedBody.rotateAngleX + hipBody.rotateAngleX);
-		float cosBody2X = 1F - mh_cos(bipedBody.rotateAngleX + hipBody.rotateAngleX);
-		float sinBody2Y = mh_sin(bipedBody.rotateAngleY + hipBody.rotateAngleY);
-		float cosBody2Y = 1F - mh_cos(bipedBody.rotateAngleY + hipBody.rotateAngleY);
+		float sinBody1X = VomsHelper.mh_sin(bipedBody.rotateAngleX);
+		float cosBody1X = 1F - VomsHelper.mh_cos(bipedBody.rotateAngleX);
+		float sinBody2X = VomsHelper.mh_sin(bipedBody.rotateAngleX + hipBody.rotateAngleX);
+		float cosBody2X = 1F - VomsHelper.mh_cos(bipedBody.rotateAngleX + hipBody.rotateAngleX);
+		float sinBody2Y = VomsHelper.mh_sin(bipedBody.rotateAngleY + hipBody.rotateAngleY);
+		float cosBody2Y = 1F - VomsHelper.mh_cos(bipedBody.rotateAngleY + hipBody.rotateAngleY);
 		
 		bipedHead.rotationPointZ -= -headPosY * sinBody1X;
 		bipedHead.rotationPointY += -headPosY * cosBody1X;
