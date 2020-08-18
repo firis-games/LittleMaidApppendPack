@@ -2,10 +2,10 @@ package voms;
 
 import java.util.Random;
 
+import firis.lmlib.api.motion.LMMotionSitdown;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
-import firis.lmmm.api.model.motion.LMMotionSitdown;
 import firis.lmmm.api.renderer.ModelRenderer;
 import voms.lib.VomsHelper;
 
@@ -715,7 +715,7 @@ public class ModelLittleMaid_Chloe2 extends ModelLittleMaidBase {
 		hemSkirtL2.rotateAngleX += jsL2 * 0.75F + hemSkirtL1.rotateAngleX * 0.15F;
 		
 		//追加モーション（お座り）
-		if (this.isRiding && LMMotionSitdown.SITDOWN.equals((String) entityCaps.getCapsValue(IModelCaps.caps_multimodel_motion))) {
+		if (this.isRiding && LMMotionSitdown.MOTION_ID.equals((String) entityCaps.getCapsValue(IModelCaps.caps_multimodel_motion))) {
 			this.mainFrame.rotationPointY += 6.00F;
 		}
 	}
