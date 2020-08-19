@@ -2,9 +2,8 @@ package yamanta;
 
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
-import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
 
-public class ModelLittleMaid_DogAngel extends ModelLittleMaid_Archetype {
+public class ModelLittleMaid_DogAngel extends ModelLittleMaidBase_YamantaArchetype {
 
 	public ModelRenderer eyeR;
 	public ModelRenderer eyeL;
@@ -382,7 +381,8 @@ public class ModelLittleMaid_DogAngel extends ModelLittleMaid_Archetype {
 
 	}
 
-	private void initBasicParts(float psize, float pyoffset) {
+	@Override
+	protected void initBasicParts(float psize, float pyoffset) {
 
 		Arms = new ModelRenderer[2];
 		Arms[0] = new ModelRenderer(this, 0, 0);
@@ -482,6 +482,8 @@ public class ModelLittleMaid_DogAngel extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(bipedRightLeg);
 		mainFrame.addChild(bipedLeftLeg);
 		mainFrame.addChild(Skirt);
+		
+		this.postInitBasicParts(psize, pyoffset);
 	}
 
 //	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,

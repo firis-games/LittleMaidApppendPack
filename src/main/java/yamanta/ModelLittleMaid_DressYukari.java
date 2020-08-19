@@ -2,16 +2,18 @@ package yamanta;
 
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.renderer.ModelRenderer;
-import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
 import yamanta.lib.ModelRendererEX;
 
-public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
+public class ModelLittleMaid_DressYukari extends ModelLittleMaidBase_YamantaArchetype {
 
 	public ModelRenderer eyeR;
 	public ModelRenderer eyeL;
 	public ModelRenderer Ahoge;
 	public ModelRenderer overHear;
 	public ModelRendererEX Glass;
+	//0:スカート
+	//1:アクセサリー
+	//2:リボン
 	public ModelRendererEX specialModel[];
 	public ModelRenderer pink;
 
@@ -91,7 +93,8 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 
 	}
 
-	private void initBasicParts(float psize, float pyoffset) {
+	@Override
+	protected void initBasicParts(float psize, float pyoffset) {
 
 		Arms = new ModelRenderer[2];
 		Arms[0] = new ModelRenderer(this, 0, 0);
@@ -194,6 +197,8 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 		mainFrame.addChild(bipedRightLeg);
 		mainFrame.addChild(bipedLeftLeg);
 		mainFrame.addChild(Skirt);
+		
+		this.postInitBasicParts(psize, pyoffset);
 	}
 
 //	public void render(IModelCaps var1, float var2, float var3, float var4, float var5, float var6, float var7,
@@ -880,12 +885,12 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 
 		bipedHead.addChild(specialModel[1]);//
 		specialModel[1].rotationPointX = adjustX + bipedHead.rotationPointX;
-		specialModel[1].rotationPointY = (offsetY - adjustY - bipedHead.rotationPointY) * (1f + psize * 0.2f);
+		specialModel[1].rotationPointY = (offsetY - adjustY - -8) * (1f + psize * 0.2f);
 		specialModel[1].rotationPointZ = adjustZ - bipedHead.rotationPointZ - 0.05f;
 
 		bipedHead.addChild(specialModel[3]);//
 		specialModel[3].rotationPointX = -adjustX - bipedHead.rotationPointX;
-		specialModel[3].rotationPointY = (offsetY - adjustY - bipedHead.rotationPointY + 0.3f) * (1f + psize * 0.2f);
+		specialModel[3].rotationPointY = (offsetY - adjustY - -8 + 0.3f) * (1f + psize * 0.2f);
 		specialModel[3].rotationPointZ = -adjustZ - bipedHead.rotationPointZ - 0.2f;
 
 		Skirt.addChild(specialModel[0]);//
@@ -897,5 +902,6 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaid_Archetype {
 		specialModel[2].rotationPointX = -adjustX - Skirt.rotationPointX;
 		specialModel[2].rotationPointY = (offsetY - adjustY - Skirt.rotationPointY) * (1f + psize * 0.2f);
 		specialModel[2].rotationPointZ = -adjustZ - Skirt.rotationPointZ;
+		
 	}
 }
