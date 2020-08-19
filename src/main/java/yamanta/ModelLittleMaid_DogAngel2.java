@@ -546,18 +546,18 @@ public class ModelLittleMaid_DogAngel2 extends ModelLittleMaidBase_YamantaArchet
 
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
-
-	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = ModelRenderer.RotXZY;
-	}
-
-	private float convertDegtoRad(float deg) {
-		return deg / 180F * (float) Math.PI;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
+//
+//	private void setRotatePriorityYZX(ModelRenderer model) {
+//		model.rotatePriority = ModelRenderer.RotXZY;
+//	}
+//
+//	private float convertDegtoRad(float deg) {
+//		return deg / 180F * (float) Math.PI;
+//	}
 
 }

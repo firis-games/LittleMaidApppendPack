@@ -792,25 +792,25 @@ public class ModelLittleMaid_Angel extends ModelLittleMaidBase_YamantaArchetype 
 
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
-
-	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x * (float) Math.PI / 180F;
-		model.rotateAngleY = y * (float) Math.PI / 180F;
-		model.rotateAngleZ = z * (float) Math.PI / 180F;
-	}
-
-	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = ModelRenderer.RotXZY;
-	}
-
-	private float convertDegtoRad(float deg) {
-		return deg / 180F * (float) Math.PI;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
+//
+//	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x * (float) Math.PI / 180F;
+//		model.rotateAngleY = y * (float) Math.PI / 180F;
+//		model.rotateAngleZ = z * (float) Math.PI / 180F;
+//	}
+//
+//	private void setRotatePriorityYZX(ModelRenderer model) {
+//		model.rotatePriority = ModelRenderer.RotXZY;
+//	}
+//
+//	private float convertDegtoRad(float deg) {
+//		return deg / 180F * (float) Math.PI;
+//	}
 	
 	@Override
 	public float getHeight() {

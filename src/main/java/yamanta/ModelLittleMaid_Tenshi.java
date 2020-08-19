@@ -937,11 +937,11 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaidBase_YamantaArchetype
 //		model.rotateAngleZ = z;
 //	}
 
-	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x * (float) Math.PI / 180F;
-		model.rotateAngleY = y * (float) Math.PI / 180F;
-		model.rotateAngleZ = z * (float) Math.PI / 180F;
-	}
+//	private void setRotationDeg(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x * (float) Math.PI / 180F;
+//		model.rotateAngleY = y * (float) Math.PI / 180F;
+//		model.rotateAngleZ = z * (float) Math.PI / 180F;
+//	}
 
 //	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
 //		dist.rotateAngleX = from.rotateAngleX;
@@ -949,13 +949,13 @@ public class ModelLittleMaid_Tenshi extends ModelLittleMaidBase_YamantaArchetype
 //		dist.rotateAngleZ = from.rotateAngleZ;
 //	}
 
-	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = ModelRenderer.RotXZY;
-	}
-
-	private float convertDegtoRad(float deg) {
-		return deg / 180F * (float) Math.PI;
-	}
+//	private void setRotatePriorityYZX(ModelRenderer model) {
+//		model.rotatePriority = ModelRenderer.RotXZY;
+//	}
+//
+//	private float convertDegtoRad(float deg) {
+//		return deg / 180F * (float) Math.PI;
+//	}
 
 	// private void shiftArray(float x,float y,float z)
 	// {

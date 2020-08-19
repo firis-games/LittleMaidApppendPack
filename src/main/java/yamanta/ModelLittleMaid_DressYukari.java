@@ -268,9 +268,9 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaidBase_YamantaArch
 //		model.rotatePriority = ModelRenderer.RotXZY;
 //	}
 
-	private float convertDegtoRad(float deg) {
-		return deg / 180F * (float) Math.PI;
-	}
+//	private float convertDegtoRad(float deg) {
+//		return deg / 180F * (float) Math.PI;
+//	}
 
 	@Override
 	public float getHeight() {
@@ -885,12 +885,12 @@ public class ModelLittleMaid_DressYukari extends ModelLittleMaidBase_YamantaArch
 
 		bipedHead.addChild(specialModel[1]);//
 		specialModel[1].rotationPointX = adjustX + bipedHead.rotationPointX;
-		specialModel[1].rotationPointY = (offsetY - adjustY - -8) * (1f + psize * 0.2f);
+		specialModel[1].rotationPointY = (offsetY - adjustY - -8.0F) * (1f + psize * 0.2f);
 		specialModel[1].rotationPointZ = adjustZ - bipedHead.rotationPointZ - 0.05f;
 
 		bipedHead.addChild(specialModel[3]);//
 		specialModel[3].rotationPointX = -adjustX - bipedHead.rotationPointX;
-		specialModel[3].rotationPointY = (offsetY - adjustY - -8 + 0.3f) * (1f + psize * 0.2f);
+		specialModel[3].rotationPointY = (offsetY - adjustY - -8.0F + 0.3f) * (1f + psize * 0.2f);
 		specialModel[3].rotationPointZ = -adjustZ - bipedHead.rotationPointZ - 0.2f;
 
 		Skirt.addChild(specialModel[0]);//

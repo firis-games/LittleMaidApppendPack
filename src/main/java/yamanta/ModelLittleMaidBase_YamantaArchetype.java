@@ -97,5 +97,37 @@ public abstract class ModelLittleMaidBase_YamantaArchetype extends ModelLittleMa
 		bipedPelvic.addChild(Skirt);
 		
 	}
+	
+	/**
+	 * Yamanta共通メソッド
+	 */
+	protected void setRotation(ModelRenderer model, float x, float y, float z) {
+		model.rotateAngleX = x;
+		model.rotateAngleY = y;
+		model.rotateAngleZ = z;
+	}
+	
+	/**
+	 * Yamanta共通メソッド
+	 */
+	protected void setRotationDeg(ModelRenderer model, float x, float y, float z) {
+		model.rotateAngleX = x * (float) Math.PI / 180F;
+		model.rotateAngleY = y * (float) Math.PI / 180F;
+		model.rotateAngleZ = z * (float) Math.PI / 180F;
+	}
+
+	/**
+	 * Yamanta共通メソッド
+	 */
+	protected void setRotatePriorityYZX(ModelRenderer model) {
+		model.rotatePriority = ModelRenderer.RotXZY;
+	}
+
+	/**
+	 * Yamanta共通メソッド
+	 */
+	protected float convertDegtoRad(float deg) {
+		return deg / 180F * (float) Math.PI;
+	}
 
 }

@@ -697,17 +697,17 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaidBase_YamantaArchetype
 
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
-
-	private void setRotationDeg(ModelRenderer cS12, float x, float y, float z) {
-		cS12.rotateAngleX = x * (float) Math.PI / 180F;
-		cS12.rotateAngleY = y * (float) Math.PI / 180F;
-		cS12.rotateAngleZ = z * (float) Math.PI / 180F;
-	}
+//	private void setRotation(ModelRenderer model, float x, float y, float z) {
+//		model.rotateAngleX = x;
+//		model.rotateAngleY = y;
+//		model.rotateAngleZ = z;
+//	}
+//
+//	private void setRotationDeg(ModelRenderer cS12, float x, float y, float z) {
+//		cS12.rotateAngleX = x * (float) Math.PI / 180F;
+//		cS12.rotateAngleY = y * (float) Math.PI / 180F;
+//		cS12.rotateAngleZ = z * (float) Math.PI / 180F;
+//	}
 
 //	private void copyRotate(ModelRenderer from, ModelRenderer dist) {
 //		dist.rotateAngleX = from.rotateAngleX;
@@ -715,12 +715,12 @@ public class ModelLittleMaid_Utsuho extends ModelLittleMaidBase_YamantaArchetype
 //		dist.rotateAngleZ = from.rotateAngleZ;
 //	}
 
-	private void setRotatePriorityYZX(ModelRenderer model) {
-		model.rotatePriority = ModelRenderer.RotXZY;
-	}
-
-	private float convertDegtoRad(float deg) {
-		return deg / 180F * (float) Math.PI;
-	}
+//	private void setRotatePriorityYZX(ModelRenderer model) {
+//		model.rotatePriority = ModelRenderer.RotXZY;
+//	}
+//
+//	private float convertDegtoRad(float deg) {
+//		return deg / 180F * (float) Math.PI;
+//	}
 
 }
