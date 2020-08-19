@@ -102,18 +102,14 @@ public abstract class ModelLittleMaidBase_YamantaArchetype extends ModelLittleMa
 	 * Yamanta共通メソッド
 	 */
 	protected void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
+		model.setRotateAngle(x, y, z);
 	}
 	
 	/**
 	 * Yamanta共通メソッド
 	 */
 	protected void setRotationDeg(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x * (float) Math.PI / 180F;
-		model.rotateAngleY = y * (float) Math.PI / 180F;
-		model.rotateAngleZ = z * (float) Math.PI / 180F;
+		model.setRotateAngleDeg(x, y, z);
 	}
 
 	/**
@@ -127,7 +123,7 @@ public abstract class ModelLittleMaidBase_YamantaArchetype extends ModelLittleMa
 	 * Yamanta共通メソッド
 	 */
 	protected float convertDegtoRad(float deg) {
-		return deg / 180F * (float) Math.PI;
+		return deg / ModelRenderer.radFactor;
 	}
 
 }
