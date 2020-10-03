@@ -2,6 +2,8 @@ package voms;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
@@ -482,5 +484,20 @@ public class ModelLittleMaid_Elsa5 extends ModelLittleMaidBase {
 		//追加モーション
 		postMotionRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
 	}
-
+	
+	@Override
+	public void renderFirstPersonHand(IModelCaps entityCaps) {
+		this.setDefaultPause();
+		float color = 1.0F;
+		GL11.glColor3f(color, color, color);
+		onGrounds[0] = onGrounds[1] = 0.0F;
+		setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, entityCaps);
+		
+		//位置調整
+		bipedRightArm.addRotationPointZ(8.0F);
+		bipedRightArm.addRotationPointY(12.0F);
+		
+		bipedRightArm.render(0.0625F);
+	}
+	
 }

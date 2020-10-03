@@ -506,4 +506,10 @@ public class ModelLittleMaid_NM1 extends ModelLittleMaidBase {
 		this.bipedBody.setRotationPoint(0.0F, -2.0F, 0.0F);
 
 	}
+	
+	@Override
+	public void renderFirstPersonHand(IModelCaps entityCaps) {
+		this.setLivingAnimations(entityCaps, 0.0F, 0.0F, 0.0F);
+		super.renderFirstPersonHand(entityCaps);
+	}
 }

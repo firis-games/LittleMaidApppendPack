@@ -2,6 +2,8 @@ package voms;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import firis.lmlib.api.motion.LMMotionSitdown;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
@@ -718,6 +720,24 @@ public class ModelLittleMaid_Beverly7 extends ModelLittleMaidBase {
 		if (this.isRiding && LMMotionSitdown.MOTION_ID.equals((String) entityCaps.getCapsValue(IModelCaps.caps_multimodel_motion))) {
 			this.mainFrame.rotationPointY += 7.00F;
 		}
+	}
+	
+	@Override
+	public void renderFirstPersonHand(IModelCaps entityCaps) {
+		
+		this.setDefaultPause();
+		
+		float color = 1.0F;
+		GL11.glColor3f(color, color, color);
+		onGrounds[0] = onGrounds[1] = 0.0F;
+		setRotationAngles(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, entityCaps);
+		
+		//位置調整
+		upperRightArm.addRotationPointZ(8.0F);
+		upperRightArm.addRotationPointY(12.0F);
+		
+		upperRightArm.render(0.0625F);
+		
 	}
 
 }
