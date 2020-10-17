@@ -85,6 +85,22 @@ task zipBuild(type: Zip, dependsOn: jar) {
     from sourceSets.main.output
 }
 
+//Develop Mod
+task devJar(type: Jar) {
+    from sourceSets.main.java
+    from sourceSets.main.output
+    classifier = 'dev'
+}
+
 artifacts {
     archives zipBuild
+    archives devJar
+}
+
+//README.md and LICENSE.md Add Jar
+jar {
+	into('') {
+		from 'README.md'
+		from 'LICENSE.md'
+	}
 }
